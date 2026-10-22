@@ -1,0 +1,66 @@
+[
+  {
+    "id": "P001",
+    "nombre": "Luis Martín",
+    "apellidos": "Hernández",
+    "dni": "11111111A",
+    "telefono": "600111222",
+    "tipo": "urgencia"
+  },
+  {
+    "id": "P002",
+    "nombre": "María Sánchez",
+    "apellidos": "Pérez",
+    "dni": "22222222B",
+    "telefono": "600222333",
+    "tipo": "planta"
+  },
+  {
+    "id": "P003",
+    "nombre": "Pedro Gómez",
+    "apellidos": "Ruiz",
+    "dni": "33333333C",
+    "telefono": "600333444",
+    "tipo": "casa"
+  },
+  {
+    "id": "P004",
+    "nombre": "Lucía Fernández",
+    "apellidos": "Torres",
+    "dni": "44444444D",
+    "telefono": "600444555",
+    "tipo": "urgencia"
+  },
+  {
+    "id": "P005",
+    "nombre": "Diego Romero",
+    "apellidos": "Molina",
+    "dni": "55555555E",
+    "telefono": "600555666",
+    "tipo": "planta"
+  },
+  {
+    "id": "P006",
+    "nombre": "Carla Torres",
+    "apellidos": "Vega",
+    "dni": "66666666F",
+    "telefono": "600666777",
+    "tipo": "casa"
+  },
+  {
+    "id": "P007",
+    "nombre": "Raúl Vega",
+    "apellidos": "Jiménez",
+    "dni": "77777777G",
+    "telefono": "600777888",
+    "tipo": "urgencia"
+  },
+  {
+    "id": "P008",
+    "nombre": "Marta Jiménez",
+    "apellidos": "Ortega",
+    "dni": "88888888H",
+    "telefono": "600888999",
+    "tipo": "casa"
+  }
+]

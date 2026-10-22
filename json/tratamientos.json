@@ -1,0 +1,34 @@
+[
+  {
+    "id": "T001",
+    "pacienteId": "P001",
+    "medicoId": "M001",
+    "descripcion": "Tratamiento con betabloqueadores para control de hipertensión arterial",
+    "fechaInicio": "2026-10-15",
+    "estado": "activo"
+  },
+  {
+    "id": "T002",
+    "pacienteId": "P002",
+    "medicoId": "M002",
+    "descripcion": "Suplementación de vitaminas y control de peso en niño de 4 años",
+    "fechaInicio": "2026-10-20",
+    "estado": "activo"
+  },
+  {
+    "id": "T003",
+    "pacienteId": "P004",
+    "medicoId": "M003",
+    "descripcion": "Terapia de rehabilitación cardiaca tras episodio agudo",
+    "fechaInicio": "2026-10-25",
+    "estado": "suspendido"
+  },
+  {
+    "id": "T004",
+    "pacienteId": "P007",
+    "medicoId": "M004",
+    "descripcion": "Tratamiento de ortodoncia con brackets metálicos",
+    "fechaInicio": "2026-09-30",
+    "estado": "activo"
+  }
+]

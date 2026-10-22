@@ -1,0 +1,42 @@
+[
+  {
+    "id": "M001",
+    "nombre": "Ana García",
+    "apellidos": "López",
+    "dni": "12345678A",
+    "departamentoId": "D001",
+    "especialidad": "Cardiología general"
+  },
+  {
+    "id": "M002",
+    "nombre": "Carlos Ruiz",
+    "apellidos": "Sánchez",
+    "dni": "87654321B",
+    "departamentoId": "D002",
+    "especialidad": "Pediatría de atención primaria"
+  },
+  {
+    "id": "M003",
+    "nombre": "Elena Martínez",
+    "apellidos": "Díaz",
+    "dni": "11223344C",
+    "departamentoId": "D001",
+    "especialidad": "Cardiología intervencionista"
+  },
+  {
+    "id": "M004",
+    "nombre": "Javier López",
+    "apellidos": "Gómez",
+    "dni": "55667788D",
+    "departamentoId": "D003",
+    "especialidad": "Ortodoncia y estética dental"
+  },
+  {
+    "id": "M005",
+    "nombre": "Sofía Díaz",
+    "apellidos": "Ruiz",
+    "dni": "99887766E",
+    "departamentoId": "D002",
+    "especialidad": "Neonatología"
+  }
+]

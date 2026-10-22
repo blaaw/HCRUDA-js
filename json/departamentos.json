@@ -1,0 +1,17 @@
+[
+  {
+    "id": "D001",
+    "nombre": "Cardiología",
+    "descripcion": "Departamento especializado en el diagnóstico y tratamiento de enfermedades del corazón y del aparato circulatorio."
+  },
+  {
+    "id": "D002",
+    "nombre": "Pediatría",
+    "descripcion": "Departamento dedicado a la atención médica de niños, niñas y adolescentes."
+  },
+  {
+    "id": "D003",
+    "nombre": "Odontología",
+    "descripcion": "Departamento de salud bucodental: prevención, diagnóstico y tratamiento de enfermedades de dientes y encías."
+  }
+]

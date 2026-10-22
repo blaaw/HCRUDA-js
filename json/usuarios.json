@@ -1,0 +1,14 @@
+[
+  {
+    "id": "U001",
+    "nombre": "Ana García López",
+    "rol": "medico",
+    "password": "clave123"
+  },
+  {
+    "id": "U002",
+    "nombre": "José Ruiz Morales",
+    "rol": "enfermero",
+    "password": "enf456"
+  }
+]
