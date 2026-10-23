@@ -2,9 +2,9 @@ let usuarioSession
 let usuarios = []
 let pacientes = []
 let tratamientos = []
+usuarioSession = undefined
 cargarGuardarEjecutar(tratamientos, "../json/tratamientos.json")
 cargarGuardarEjecutar(usuarios, "../json/usuarios.json", identificarUsuarioSesion)
-usuarioSession = undefined
 
 onload = () => {
     cargarGuardarEjecutar(pacientes, "../json/pacientes.json", pintarTablaPacientes)
@@ -59,7 +59,9 @@ function pintarTablaPacientes(listaPacientes) {
             <td>${paciente.dni}</td>
             <td>${paciente.telefono}</td>
             <td><span class="badge tipo--${paciente.tipo}">${paciente.tipo}</span></td>
-            <td>${estadoTratamiento !== "---" ? `<span class="badge ${claseEstado}">${estadoTratamiento}</span>` : estadoTratamiento}</td>
+            <td>${estadoTratamiento !== "---" 
+                ? `<span class="badge ${claseEstado}">${estadoTratamiento}</span>` 
+                : estadoTratamiento}</td>
         </tr>`
     })
     tbody.innerHTML = html
