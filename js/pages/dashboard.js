@@ -8,6 +8,10 @@ usuarioSession = undefined
 
 onload = () => {
     cargarGuardarEjecutar(pacientes, "../json/pacientes.json", pintarTablaPacientes)
+    document.getElementById("buscar-paciente")
+        .addEventListener("keyup", filtrarPacientesNombre)
+    document.getElementById("filtro-tipo-paciente")
+        .addEventListener("change", filtrarPacientesTipo)
 }
 
 function identificarUsuarioSesion(usuarios) {
@@ -59,4 +63,24 @@ function pintarTablaPacientes(listaPacientes) {
         </tr>`
     })
     tbody.innerHTML = html
+}
+
+function filtrarPacientesNombre() {
+    const barraBusqueda = document.getElementById("buscar-paciente").value
+    let pacientesFiltrados = pacientes
+        .filter(paciente => paciente.nombre.includes(barraBusqueda) 
+            || paciente.apellidos.includes(barraBusqueda))
+    pintarTablaPacientes(pacientesFiltrados)
+}
+
+function filtrarPacientesTipo(event) {
+    const tipo = event.target.value
+    if (tipo) {
+    let pacientesFiltrados = pacientes
+        .filter(paciente => paciente.tipo == tipo)
+    pintarTablaPacientes(pacientesFiltrados)
+    } else {
+        pintarTablaPacientes(pacientes)
+    }
+    
 }
