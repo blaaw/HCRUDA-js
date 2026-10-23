@@ -9,8 +9,6 @@
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/components.css" />
   <link rel="stylesheet" href="../css/pages/dashboard.css" />
-  <script src="../js/utils.js"></script>
-  <script src="../js/pages/dashboard.js"></script>
 </head>
 <body>
   <div class="dashboard-container">
@@ -35,36 +33,170 @@
       </button>
     </header>
 
+    <!-- Resumen arriba -->
     <div class="dashboard-resumen">
       <div class="resumen-card">
-        <p class="resumen-card__label">Pacientes</p>
-        <p class="resumen-card__valor" id="stat-pacientes">—</p>
-      </div>
-      <div class="resumen-card">
         <p class="resumen-card__label">Doctores</p>
-        <p class="resumen-card__valor" id="stat-doctores">—</p>
-      </div>
-      <div class="resumen-card">
-        <p class="resumen-card__label">Citas pendientes</p>
-        <p class="resumen-card__valor" id="stat-citas">—</p>
+        <p class="resumen-card__valor" id="stat-doctores">5</p>
       </div>
       <div class="resumen-card">
         <p class="resumen-card__label">Tratamientos activos</p>
-        <p class="resumen-card__valor" id="stat-tratamientos">—</p>
+        <p class="resumen-card__valor" id="stat-tratamientos">4</p>
       </div>
     </div>
 
     <hr class="nm-divider" />
 
     <main class="dashboard-main">
-      <div class="dashboard-vacio">
-        <div class="dashboard-vacio__icono">🏥</div>
-        <h2 class="dashboard-vacio__titulo">Bienvenido a HCRUDA</h2>
-        <p class="dashboard-vacio__texto">
-          Selecciona una opción del menú para comenzar a gestionar pacientes, doctores, citas o tratamientos.
-        </p>
-      </div>
+      <!-- Componente pequeño de citas -->
+      <section class="citas-componente">
+        <header class="citas-header">
+          <h2 class="citas-title">Citas</h2>
+        </header>
+
+        <div class="citas-estados">
+          <button type="button" class="estado-btn" id="btn-estado-pendiente">
+            <span class="estado-btn__label">Pendientes</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-confirmada">
+            <span class="estado-btn__label">Confirmadas</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-completada">
+            <span class="estado-btn__label">Completadas</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-cancelada">
+            <span class="estado-btn__label">Canceladas</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-total">
+            <span class="estado-btn__label">Todas</span>
+          </button>
+        </div>
+
+        <div class="citas-total">
+          <span class="citas-total__label">Total citas:</span>
+          <span class="citas-total__numero" id="citas-total">10</span>
+        </div>
+      </section>
+
+      <!-- Búsqueda y tabla de pacientes -->
+      <section class="pacientes-seccion">
+        <header class="pacientes-header">
+          <h2 class="pacientes-title">Pacientes</h2>
+        </header>
+
+        <div class="pacientes-filtros">
+          <div class="filtro-buscar">
+            <label for="buscar-paciente">Buscar por nombre</label>
+            <input
+              type="search"
+              id="buscar-paciente"
+              placeholder="Escribe nombre o apellido…"
+              aria-label="Buscar paciente por nombre"
+              class="input"
+            />
+          </div>
+
+          <div class="filtro-tipo">
+            <label for="filtro-tipo-paciente">Tipo de paciente</label>
+            <select
+              id="filtro-tipo-paciente"
+              aria-label="Filtrar por tipo de paciente"
+              class="input"
+            >
+              <option value="">Todos los tipos</option>
+              <option value="urgencia">Urgencia</option>
+              <option value="planta">Planta</option>
+              <option value="casa">Casa</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pacientes-tabla-wrap">
+          <table class="pacientes-tabla">
+            <caption>Pacientes registrados</caption>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Teléfono</th>
+                <th>Tipo</th>
+                <th>Última cita</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Luis Martín</td>
+                <td>Hernández</td>
+                <td>11111111A</td>
+                <td>600 111 222</td>
+                <td><span class="badge tipo--urgencia">Urgencia</span></td>
+                <td>05/11/2026</td>
+              </tr>
+              <tr>
+                <td>María Sánchez</td>
+                <td>Pérez</td>
+                <td>22222222B</td>
+                <td>600 222 333</td>
+                <td><span class="badge tipo--planta">Planta</span></td>
+                <td>06/11/2026</td>
+              </tr>
+              <tr>
+                <td>Pedro Gómez</td>
+                <td>Ruiz</td>
+                <td>33333333C</td>
+                <td>600 333 444</td>
+                <td><span class="badge tipo--casa">Casa</span></td>
+                <td>07/11/2026</td>
+              </tr>
+              <tr>
+                <td>Lucía Fernández</td>
+                <td>Torres</td>
+                <td>44444444D</td>
+                <td>600 444 555</td>
+                <td><span class="badge tipo--urgencia">Urgencia</span></td>
+                <td>08/11/2026</td>
+              </tr>
+              <tr>
+                <td>Diego Romero</td>
+                <td>Molina</td>
+                <td>55555555E</td>
+                <td>600 555 666</td>
+                <td><span class="badge tipo--planta">Planta</span></td>
+                <td>09/11/2026</td>
+              </tr>
+              <tr>
+                <td>Carla Torres</td>
+                <td>Vega</td>
+                <td>66666666F</td>
+                <td>600 666 777</td>
+                <td><span class="badge tipo--casa">Casa</span></td>
+                <td>10/11/2026</td>
+              </tr>
+              <tr>
+                <td>Raúl Vega</td>
+                <td>Jiménez</td>
+                <td>77777777G</td>
+                <td>600 777 888</td>
+                <td><span class="badge tipo--urgencia">Urgencia</span></td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Marta Jiménez</td>
+                <td>Ortega</td>
+                <td>88888888H</td>
+                <td>600 888 999</td>
+                <td><span class="badge tipo--casa">Casa</span></td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
   </div>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/pages/dashboard.js"></script>
 </body>
 </html>

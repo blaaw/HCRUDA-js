@@ -14,7 +14,7 @@
 .select {
   --r: var(--r-md);
   width: 100%;
-  min-height: 48px;
+  min-height: 44px;
   padding: 0 var(--sp-4);
   font: 400 15px/1.4 var(--font-sans);
   color: var(--text-strong);
@@ -23,6 +23,13 @@
   border-radius: var(--r);
   box-shadow: var(--sh-inset-2);
   transition: box-shadow var(--dur) var(--ease);
+}
+
+.input::placeholder,
+.textarea::placeholder,
+.select::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
 }
 
 .input::placeholder {
@@ -38,7 +45,8 @@
 }
 
 .input[aria-invalid="true"],
-.select[aria-invalid="true"] {
+.select[aria-invalid="true"],
+.textarea[aria-invalid="true"] {
   box-shadow: var(--sh-inset-2), 0 0 0 2px var(--danger);
 }
 

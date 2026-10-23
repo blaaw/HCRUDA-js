@@ -35,6 +35,7 @@
             pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
             autocomplete="given-name"
             minlength="2"
+            class="input"
           />
           <p class="field__error" id="error-nombre" aria-live="polite"></p>
         </div>
@@ -50,6 +51,7 @@
             pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
             autocomplete="family-name"
             minlength="2"
+            class="input"
           />
           <p class="field__error" id="error-apellidos" aria-live="polite"></p>
         </div>
@@ -65,6 +67,7 @@
             pattern="^[0-9]{8}[A-Z]$"
             autocomplete="off"
             maxlength="9"
+            class="input"
           />
           <p class="field__error" id="error-dni" aria-live="polite"></p>
           <p class="field__hint">Formato: 8 números seguidos de una letra mayúscula (ej. 12345678A)</p>
@@ -79,13 +82,14 @@
             placeholder="usuario@hospital.com"
             required
             autocomplete="email"
+            class="input"
           />
           <p class="field__error" id="error-email" aria-live="polite"></p>
         </div>
 
         <div class="field">
           <label for="rol">Rol</label>
-          <select id="rol" name="rol" required>
+          <select id="rol" name="rol" required class="input">
             <option value="">Selecciona un rol</option>
             <value="medico">Médico</option>
             <value="enfermero">Enfermero</option>
@@ -103,6 +107,7 @@
             required
             minlength="6"
             autocomplete="new-password"
+            class="input"
           />
           <p class="field__error" id="error-password" aria-live="polite"></p>
           <p class="field__hint">Mínimo 6 caracteres</p>
@@ -117,6 +122,7 @@
             placeholder="••••••••"
             required
             autocomplete="new-password"
+            class="input"
           />
           <p class="field__error" id="error-password-confirm" aria-live="polite"></p>
         </div>
