@@ -47,6 +47,7 @@ function pintarTablaPacientes(listaPacientes) {
            estadoTratamiento = tratamientoPaciente.estado 
         }
 
+        let claseEstado = estadoTratamiento !== "---" ? `estado--${estadoTratamiento}` : ""
         html += `
         <tr>
             <td>${paciente.nombre}</td>
@@ -54,7 +55,7 @@ function pintarTablaPacientes(listaPacientes) {
             <td>${paciente.dni}</td>
             <td>${paciente.telefono}</td>
             <td><span class="badge tipo--${paciente.tipo}">${paciente.tipo}</span></td>
-            <td>${estadoTratamiento}</td>
+            <td>${estadoTratamiento !== "---" ? `<span class="badge ${claseEstado}">${estadoTratamiento}</span>` : estadoTratamiento}</td>
         </tr>`
     })
     tbody.innerHTML = html

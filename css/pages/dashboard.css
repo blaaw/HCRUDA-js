@@ -367,9 +367,9 @@
 }
 
 .badge.tipo--urgencia {
-  background: var(--cyan-100);
-  color: var(--cyan-700);
-  box-shadow: inset 0 0 0 1px var(--cyan-300);
+  background: rgb(181 69 63 / .12);
+  color: var(--danger);
+  box-shadow: inset 0 0 0 1px rgb(181 69 63 / .35);
 }
 
 .badge.tipo--planta {
@@ -379,9 +379,34 @@
 }
 
 .badge.tipo--casa {
+  background: rgb(112 61 165 / .12);
+  color: #7C3AED;
+  box-shadow: inset 0 0 0 1px rgb(112 61 165 / .35);
+}
+
+/* Badge de estado de tratamiento */
+.badge.estado--activo {
+  background: rgb(47 143 107 / .12);
+  color: var(--ok);
+  box-shadow: inset 0 0 0 1px rgb(47 143 107 / .35);
+}
+
+.badge.estado--suspendido {
   background: rgb(168 106 18 / .12);
   color: var(--warn);
   box-shadow: inset 0 0 0 1px rgb(168 106 18 / .35);
+}
+
+.badge.estado--finalizado {
+  background: rgb(112 61 165 / .12);
+  color: #7C3AED;
+  box-shadow: inset 0 0 0 1px rgb(112 61 165 / .35);
+}
+
+.badge.estado--cancelado {
+  background: rgb(181 69 63 / .12);
+  color: var(--danger);
+  box-shadow: inset 0 0 0 1px rgb(181 69 63 / .35);
 }
 
 .nm-divider {

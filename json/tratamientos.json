@@ -17,7 +17,7 @@
   },
   {
     "id": "T003",
-    "pacienteId": "P004",
+    "pacienteId": "P005",
     "medicoId": "M003",
     "descripcion": "Terapia de rehabilitación cardiaca tras episodio agudo",
     "fechaInicio": "2026-10-25",
