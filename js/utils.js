@@ -8,6 +8,8 @@ function cargarGuardarEjecutar(lista, url, funcion) {
         .catch(e => console.error(e))
 }
 
-function redirigirConSesion(usuario, password, rol, url) {
+function redirigirConSesion(usuario, rol, url) {
+    let sesionUsuario = {"usuario": usuario,"rol": rol}
+    window.sessionStorage.setItem("session", JSON.stringify(sesionUsuario))
     location.href = url
 }

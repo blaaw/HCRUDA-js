@@ -1,4 +1,5 @@
 let usuarios = []
+window.sessionStorage.removeItem("session")
 
 onload = () => {
     cargarGuardarEjecutar(usuarios, "json/usuarios.json")
@@ -42,7 +43,7 @@ function validarLogin(usuario, password) {
     usuarios.forEach(usuarioValido => {
         if (usuarioValido.id == usuario && usuarioValido.password == password) {
             validado = true
-            redirigirConSesion(usuario, password, usuarioValido.rol, "pages/dashboard.html")
+            redirigirConSesion(usuario, usuarioValido.rol, "pages/dashboard.html")
         }
     })
     let errorUsuario = document.getElementById("error-usuario")

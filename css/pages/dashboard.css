@@ -66,17 +66,18 @@
 }
 
 .dashboard-user__avatar {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--r-pill);
-  background: var(--grad-sunken);
-  box-shadow: var(--sh-inset-1);
-  display: inline-flex;
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   font-weight: 600;
-  font-size: 14px;
-  color: var(--cyan-700);
+  font-size: 16px;
+  color: var(--text-strong);
 }
 
 .dashboard-user__info {
@@ -84,6 +85,7 @@
   flex-direction: column;
   gap: var(--sp-1);
   min-width: 0;
+  flex: 1;
 }
 
 .dashboard-user__name {
