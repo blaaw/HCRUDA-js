@@ -80,9 +80,13 @@
 
 @media (max-width: 480px) {
   .registro-container {
-    padding: var(--sp-3);
+    padding: var(--sp-5) var(--sp-3);
+    align-items: flex-start;
+    min-height: auto;
   }
   .registro-card {
-    padding: var(--sp-5);
+    padding: var(--sp-6);
+    margin-top: var(--sp-4);
+    margin-bottom: var(--sp-6);
   }
 }
