@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HCRUDA — Iniciar sesión</title>
-  <link rel="icon" type="image/jpeg" href="public/34a7e23742c910627feb9b92baabdf71.jpg" />
+  <title>HCRUDA - Iniciar sesión</title>
+  <link rel="icon" type="image/jpeg" href="public/favicon.jpg" />
   <link rel="stylesheet" href="css/design-system.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
@@ -25,12 +25,12 @@
 
       <form class="login-form" id="form-login" novalidate>
         <div class="field">
-          <label for="usuario">Usuario o email</label>
+          <label for="usuario">Código de Usuario</label>
           <input
             type="email"
             id="usuario"
             name="usuario"
-            placeholder="usuario@hospital.com"
+            placeholder="U001"
             required
             autocomplete="username"
           />
@@ -51,7 +51,7 @@
           <p class="field__error" id="error-password" aria-live="polite"></p>
         </div>
 
-        <button type="submit" class="btn btn--primary" id="btn-login">
+        <button type="button" class="btn btn--primary" id="btn-login">
           Entrar
         </button>
       </form>
