@@ -26,8 +26,8 @@
 }
 
 .login-logo {
-  width: 64px;
-  height: 64px;
+  width: 70px;
+  height: 70px;
   margin: 0 auto var(--sp-4);
   border-radius: var(--r-lg);
   background: var(--grad-raised);
@@ -38,8 +38,8 @@
 }
 
 .login-logo img {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: var(--r-md);
 }
 

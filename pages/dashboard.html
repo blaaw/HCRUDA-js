@@ -1,11 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HCRUDA - Dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HCRUDA — Panel principal</title>
+  <link rel="icon" type="image/jpeg" href="../public/favicon.jpg" />
+  <link rel="stylesheet" href="../css/design-system.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/dashboard.css" />
+  <script src="../js/utils.js"></script>
+  <script src="../js/pages/dashboard.js"></script>
 </head>
 <body>
-    
+  <div class="dashboard-container">
+    <header class="dashboard-header">
+      <div class="dashboard-brand">
+        <div class="dashboard-logo nm-sign" style="--r: var(--r-md);">
+          <img src="../public/favicon.jpg" alt="Logo HCRUDA" />
+        </div>
+        <h1 class="dashboard-title">Panel principal</h1>
+      </div>
+
+      <div class="dashboard-user">
+        <div class="dashboard-user__info">
+          <span class="dashboard-user__name" id="usuario-nombre">Usuario</span>
+          <span class="dashboard-user__rol" id="usuario-rol">Rol</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-logout" id="btn-logout">
+        Cerrar sesión
+      </button>
+    </header>
+
+    <div class="dashboard-resumen">
+      <div class="resumen-card">
+        <p class="resumen-card__label">Pacientes</p>
+        <p class="resumen-card__valor" id="stat-pacientes">—</p>
+      </div>
+      <div class="resumen-card">
+        <p class="resumen-card__label">Doctores</p>
+        <p class="resumen-card__valor" id="stat-doctores">—</p>
+      </div>
+      <div class="resumen-card">
+        <p class="resumen-card__label">Citas pendientes</p>
+        <p class="resumen-card__valor" id="stat-citas">—</p>
+      </div>
+      <div class="resumen-card">
+        <p class="resumen-card__label">Tratamientos activos</p>
+        <p class="resumen-card__valor" id="stat-tratamientos">—</p>
+      </div>
+    </div>
+
+    <hr class="nm-divider" />
+
+    <main class="dashboard-main">
+      <div class="dashboard-vacio">
+        <div class="dashboard-vacio__icono">🏥</div>
+        <h2 class="dashboard-vacio__titulo">Bienvenido a HCRUDA</h2>
+        <p class="dashboard-vacio__texto">
+          Selecciona una opción del menú para comenzar a gestionar pacientes, doctores, citas o tratamientos.
+        </p>
+      </div>
+    </main>
+  </div>
 </body>
 </html>
