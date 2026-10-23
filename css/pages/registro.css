@@ -1,0 +1,88 @@
+/* ─────────────────────────────
+   HCRUDA — Página de registro
+   ───────────────────────────── */
+
+.registro-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-6);
+}
+
+.registro-card {
+  --r: var(--r-xl);
+  width: 100%;
+  max-width: 520px;
+  padding: var(--sp-7);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-4);
+}
+
+.registro-header {
+  text-align: center;
+  margin-bottom: var(--sp-6);
+}
+
+.registro-logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--sp-4);
+  border-radius: var(--r-lg);
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registro-logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-md);
+}
+
+.registro-title {
+  font: 600 28px/36px var(--font-sans);
+  color: var(--text-strong);
+  margin: 0 0 var(--sp-2);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.registro-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.registro-form {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.registro-form .btn {
+  width: 100%;
+}
+
+.registro-footer {
+  margin-top: var(--sp-5);
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.registro-footer a {
+  color: var(--cyan-700);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .registro-container {
+    padding: var(--sp-3);
+  }
+  .registro-card {
+    padding: var(--sp-5);
+  }
+}

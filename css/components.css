@@ -1,0 +1,154 @@
+/* ─────────────────────────────
+   HCRUDA — Componentes reutilizables
+   ───────────────────────────── */
+
+/* Campo de formulario (input siempre cóncavo) */
+.field {
+  display: grid;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+
+.input,
+.textarea,
+.select {
+  --r: var(--r-md);
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--sp-4);
+  font: 400 15px/1.4 var(--font-sans);
+  color: var(--text-strong);
+  background: var(--grad-sunken);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-inset-2);
+  transition: box-shadow var(--dur) var(--ease);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.input:focus-visible,
+.textarea:focus-visible,
+.select:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-inset-2), 0 0 0 2px var(--cyan-400), var(--glow-cyan);
+}
+
+.input[aria-invalid="true"],
+.select[aria-invalid="true"] {
+  box-shadow: var(--sh-inset-2), 0 0 0 2px var(--danger);
+}
+
+.field__error {
+  font-size: 12px;
+  color: var(--danger);
+  margin-top: var(--sp-1);
+}
+
+.field__hint {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Botón base (convexo por defecto) */
+.btn {
+  --r: var(--r-md);
+  min-height: 44px;
+  padding: 0 var(--sp-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  font: 600 13px/1 var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-strong);
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-2);
+  cursor: pointer;
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+
+.btn:hover {
+  box-shadow: var(--sh-raised-3);
+  transform: translateY(-1px);
+}
+
+.btn:active,
+.btn[aria-pressed="true"] {
+  box-shadow: var(--sh-inset-2);
+  background: var(--grad-sunken);
+  transform: none;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-2), var(--focus-ring);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  box-shadow: none;
+  opacity: 0.55;
+  cursor: not-allowed;
+  color: var(--text-disabled);
+  transform: none;
+}
+
+/* Botón primario: misma superficie + firma cian + texto cian accesible. NO relleno cian. */
+.btn--primary {
+  color: var(--cyan-700);
+  position: relative;
+}
+.btn--primary::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  pointer-events: none;
+  border-radius: max(0px, calc(var(--r) - 6px));
+  border: 1.5px solid var(--cyan-300);
+  box-shadow: 0 0 0 1px var(--nm-hairline), var(--glow-cyan);
+}
+
+/* Tarjeta / Panel */
+.card {
+  --r: var(--r-lg);
+  padding: var(--sp-5);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-3);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.card:hover {
+  box-shadow: var(--sh-raised-4);
+  transform: translateY(-1px);
+}
+
+.card__title {
+  font: 600 18px/26px var(--font-sans);
+  color: var(--text-strong);
+  margin: 0 0 var(--sp-3);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.card__subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-4);
+}
+
+/* Divider grabado */
+.nm-divider {
+  height: 0;
+  border: 0;
+  border-top: 1px solid var(--nm-hairline);
+  border-bottom: 1px solid var(--nm-light);
+  margin: var(--sp-5) 0;
+}
