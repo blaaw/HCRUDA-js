@@ -130,22 +130,152 @@
   box-shadow: var(--sh-raised-1), var(--focus-ring);
 }
 
-/* ───────── Toolbar (botón nuevo paciente) ───────── */
+/* ───────── Formulario nuevo paciente (horizontal, arriba del main) ───────── */
 
-.pacientes-toolbar {
-  display: flex;
-  gap: var(--sp-4);
-  margin-bottom: var(--sp-5);
-  flex-wrap: wrap;
+.pacientes-nuevo-form {
+  --r: var(--r-lg);
+  padding: var(--sp-5);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-2);
+  margin-bottom: var(--sp-6);
 }
 
-/* ───────── Filtros ───────── */
+.pacientes-nuevo-form form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: flex-end;
+}
+
+.pacientes-nuevo-form .field {
+  flex: 1;
+  min-width: 150px;
+  margin-bottom: 0;
+}
+
+/* ───────── Main: dos columnas (detalle | tabla) ───────── */
+
+.pacientes-main {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: var(--sp-6);
+}
+
+/* Columna izquierda: detalle del paciente seleccionado */
+.pacientes-detalle {
+  --r: var(--r-xl);
+  padding: var(--sp-6);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.pacientes-detalle__foto {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--r-lg);
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--sp-4);
+}
+
+.pacientes-detalle__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pacientes-detalle__datos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.pacientes-detalle__nombre {
+  font: 600 22px/28px var(--font-sans);
+  color: var(--text-strong);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.pacientes-detalle__dni,
+.pacientes-detalle__telefono,
+.pacientes-detalle__tipo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font: 400 14px/1.5 var(--font-sans);
+  color: var(--text-default);
+  margin: 0;
+}
+
+.pacientes-detalle__etiqueta {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.pacientes-detalle__tratamiento {
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--nm-hairline);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.pacientes-detalle__tratamiento .badge {
+  align-self: flex-start;
+}
+
+.pacientes-detalle__tratamiento-texto {
+  font: 400 13px/1.5 var(--font-sans);
+  color: var(--text-default);
+  margin: 0;
+}
+
+.pacientes-detalle__acciones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+.pacientes-detalle__acciones .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Columna derecha: tabla con filtros */
+.pacientes-tabla-seccion {
+  --r: var(--r-lg);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
 .pacientes-filtros {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-4);
-  margin-bottom: var(--sp-5);
+  padding: var(--sp-5) var(--sp-5) var(--sp-1);
+  background: var(--nm-bg-hi);
+  border-bottom: 1px solid var(--nm-hairline);
 }
 
 .filtro-buscar,
@@ -166,47 +296,9 @@
   color: var(--text-muted);
 }
 
-/* ───────── Formulario (alta / edición) ───────── */
-
-.pacientes-formulario {
-  --r: var(--r-lg);
-  padding: var(--sp-5);
-  background: var(--grad-raised);
-  border-radius: var(--r);
-  box-shadow: var(--sh-raised-3);
-  margin-bottom: var(--sp-6);
-}
-
-.pacientes-formulario__titulo {
-  font: 600 18px/26px var(--font-sans);
-  color: var(--text-strong);
-  margin: 0 0 var(--sp-4);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-wordmark);
-}
-
-.pacientes-formulario .field {
-  margin-bottom: var(--sp-4);
-}
-
-.pacientes-formulario__acciones {
-  display: flex;
-  gap: var(--sp-3);
-  margin-top: var(--sp-2);
-}
-
-/* ───────── Tabla de pacientes ───────── */
-
-.pacientes-tabla-seccion {
-  --r: var(--r-lg);
-  background: var(--grad-raised);
-  border-radius: var(--r);
-  box-shadow: var(--sh-raised-2);
-  overflow: hidden;
-}
-
 .pacientes-tabla-wrap {
   overflow-x: auto;
+  padding: var(--sp-1) var(--sp-5) var(--sp-5);
 }
 
 .pacientes-tabla {
@@ -256,44 +348,6 @@
   background: var(--nm-bg-hi);
 }
 
-/* Acciones de fila */
-.pacientes-acciones {
-  display: flex;
-  gap: var(--sp-2);
-}
-
-.btn-editar,
-.btn-eliminar {
-  --r: var(--r-sm);
-  padding: var(--sp-1) var(--sp-3);
-  font: 500 12px/1 var(--font-sans);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-label);
-  color: var(--text-strong);
-  background: var(--grad-raised);
-  border: 0;
-  border-radius: var(--r);
-  box-shadow: var(--sh-raised-1);
-  cursor: pointer;
-  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-
-.btn-editar:hover {
-  box-shadow: var(--sh-raised-2);
-  transform: translateY(-1px);
-}
-
-.btn-eliminar:hover {
-  box-shadow: var(--sh-raised-2);
-  transform: translateY(-1px);
-}
-
-.btn-editar:focus-visible,
-.btn-eliminar:focus-visible {
-  outline: none;
-  box-shadow: var(--sh-raised-1), var(--focus-ring);
-}
-
 /* Badge de tipo de paciente */
 .badge {
   display: inline-flex;
@@ -326,7 +380,14 @@
   box-shadow: inset 0 0 0 1px rgb(112 61 165 / .35);
 }
 
-/* ───────── Menú lateral (hamburguesa) — idéntico al dashboard ───────── */
+/* Badge de estado de tratamiento */
+.badge.estado--activo {
+  background: rgb(47 143 107 / .12);
+  color: var(--ok);
+  box-shadow: inset 0 0 0 1px rgb(47 143 107 / .35);
+}
+
+/* ───────── Menú lateral (hamburguesa) ───────── */
 
 .sidebar-overlay {
   position: fixed;
@@ -465,7 +526,7 @@
   display: block;
   width: 20px;
   height: 1px;
-  background: var(--text-strong);
+  background: var(--text-muted);
   border-radius: var(--r-xs);
   margin: 3px 0;
   transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease), background var(--dur) var(--ease);

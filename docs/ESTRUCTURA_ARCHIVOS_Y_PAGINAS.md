@@ -95,10 +95,11 @@ Ningún archivo de `pages/` debe duplicar lógica que pertenezca a `utils.js` o 
 - Filtrado por fecha, médico, paciente o estado. Ordenado por distintos campos.
 
 ### pacientes.html — Gestión de pacientes (ya creada)
-- Formulario de alta y edición (oculto por defecto).
-- Tabla con columnas: Nombre, Apellidos, DNI, Teléfono, Tipo (badge de color), Acciones (Editar/Eliminar).
-- Filtros: search bar por nombre + select por tipo (Urgencia, Planta, Casa, Todos).
+- Layout de dos columnas en el main:
+  - Izquierda (`.pacientes-detalle`): detalle del paciente seleccionado con foto de perfil (avatar desde pravatar.cc), nombre, DNI, teléfono, tipo (badge), y botones de acción (Editar, Eliminar, Ver historial clínico).
+  - Derecha (`.pacientes-tabla-seccion`): filtros (search bar por nombre + select por tipo) y tabla reducida con columnas: Nombre, Apellidos, DNI, Teléfono, Tipo, Acciones.
 - Menú lateral con hamburguesa idéntico al dashboard.
+- Sin formulario de alta/edición oculto; las acciones se hacen desde el detalle o desde los botones de fila.
 
 ### doctores.html — Gestión de doctores (pendiente de crear)
 - Debe seguir el **patrón de layout base** (ver sección 3).

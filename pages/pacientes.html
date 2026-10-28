@@ -52,152 +52,175 @@
       </button>
     </header>
 
-    <main class="pacientes-main">
-      <section class="pacientes-toolbar">
-        <button type="button" class="btn btn--primary" id="btn-nuevo-paciente">
-          Nuevo paciente
-        </button>
-      </section>
-
-      <!-- Filtros -->
-      <section class="pacientes-filtros">
-        <div class="filtro-buscar">
-          <label for="buscar-paciente">Buscar por nombre</label>
+    <!-- Formulario nuevo paciente (horizontal, arriba del main) -->
+    <section class="pacientes-nuevo-form">
+      <form id="form-nuevo-paciente" novalidate>
+        <div class="field">
+          <label for="nuevo-nombre">Nombre</label>
           <input
-            type="search"
-            id="buscar-paciente"
-            placeholder="Escribe nombre o apellido…"
-            aria-label="Buscar paciente por nombre"
+            type="text"
+            id="nuevo-nombre"
+            name="nuevo-nombre"
+            placeholder="Luis"
+            required
+            pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
+            minlength="2"
             class="input"
           />
         </div>
-        <div class="filtro-tipo">
-          <label for="filtro-tipo-paciente">Tipo de paciente</label>
+        <div class="field">
+          <label for="nuevo-apellidos">Apellidos</label>
+          <input
+            type="text"
+            id="nuevo-apellidos"
+            name="nuevo-apellidos"
+            placeholder="Martín Hernández"
+            required
+            pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
+            minlength="2"
+            class="input"
+          />
+        </div>
+        <div class="field">
+          <label for="nuevo-dni">DNI</label>
+          <input
+            type="text"
+            id="nuevo-dni"
+            name="nuevo-dni"
+            placeholder="12345678A"
+            required
+            pattern="^[0-9]{8}[A-Z]$"
+            maxlength="9"
+            class="input"
+          />
+        </div>
+        <div class="field">
+          <label for="nuevo-telefono">Teléfono</label>
+          <input
+            type="tel"
+            id="nuevo-telefono"
+            name="nuevo-telefono"
+            placeholder="600 111 222"
+            required
+            class="input"
+          />
+        </div>
+        <div class="field">
+          <label for="nuevo-tipo">Tipo</label>
           <select
-            id="filtro-tipo-paciente"
-            aria-label="Filtrar por tipo de paciente"
+            id="nuevo-tipo"
+            name="nuevo-tipo"
+            required
             class="input"
           >
-            <option value="">Todos los tipos</option>
             <option value="urgencia">Urgencia</option>
             <option value="planta">Planta</option>
             <option value="casa">Casa</option>
           </select>
         </div>
+        <button type="button" class="btn btn--primary">Crear paciente</button>
+      </form>
+    </section>
+
+    <main class="pacientes-main">
+      <!-- Columna izquierda: detalle del paciente seleccionado -->
+      <section class="pacientes-detalle">
+        <div class="pacientes-detalle__foto">
+          <img src="https://i.pravatar.cc/150?u=paciente-luis" alt="Foto de perfil del paciente" />
+        </div>
+        <div class="pacientes-detalle__datos">
+          <h2 class="pacientes-detalle__nombre">Luis Martín Hernández</h2>
+          <p class="pacientes-detalle__dni"><span class="pacientes-detalle__etiqueta">DNI:</span> 11111111A</p>
+          <p class="pacientes-detalle__telefono"><span class="pacientes-detalle__etiqueta">Teléfono:</span> 600 111 222</p>
+          <p class="pacientes-detalle__tipo"><span class="pacientes-detalle__etiqueta">Tipo:</span> <span class="badge tipo--urgencia">Urgencia</span></p>
+          <div class="pacientes-detalle__tratamiento">
+            <span class="pacientes-detalle__etiqueta">Tratamiento:</span>
+            <span class="badge estado--activo">Activo</span>
+            <p class="pacientes-detalle__tratamiento-texto">Terapia de rehabilitación cardiaca tras episodio agudo</p>
+          </div>
+        </div>
+        <div class="pacientes-detalle__acciones">
+          <button type="button" class="btn btn--primary">Editar paciente</button>
+          <button type="button" class="btn btn--danger">Eliminar paciente</button>
+          <button type="button" class="btn">Ver historial clínico</button>
+        </div>
       </section>
 
-      <!-- Formulario alta / edición (oculto por defecto) -->
-      <section class="pacientes-formulario" id="pacientes-formulario" style="display:none;">
-        <h2 class="pacientes-formulario__titulo" id="pacientes-formulario-titulo">Nuevo paciente</h2>
-        <form id="form-paciente" novalidate>
-          <input type="hidden" id="paciente-id">
-
-          <div class="field">
-            <label for="paciente-nombre">Nombre</label>
+      <!-- Columna derecha: tabla de pacientes con filtros -->
+      <section class="pacientes-tabla-seccion">
+        <div class="pacientes-filtros">
+          <div class="filtro-buscar">
+            <label for="buscar-paciente">Buscar por nombre</label>
             <input
-              type="text"
-              id="paciente-nombre"
-              name="paciente-nombre"
-              placeholder="Luis"
-              required
-              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
-              minlength="2"
+              type="search"
+              id="buscar-paciente"
+              placeholder="Escribe nombre o apellido…"
+              aria-label="Buscar paciente por nombre"
               class="input"
             />
-            <p class="field__error" id="error-paciente-nombre" aria-live="polite"></p>
           </div>
-
-          <div class="field">
-            <label for="paciente-apellidos">Apellidos</label>
-            <input
-              type="text"
-              id="paciente-apellidos"
-              name="paciente-apellidos"
-              placeholder="Martín Hernández"
-              required
-              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
-              minlength="2"
-              class="input"
-            />
-            <p class="field__error" id="error-paciente-apellidos" aria-live="polite"></p>
-          </div>
-
-          <div class="field">
-            <label for="paciente-dni">DNI</label>
-            <input
-              type="text"
-              id="paciente-dni"
-              name="paciente-dni"
-              placeholder="12345678A"
-              required
-              pattern="^[0-9]{8}[A-Z]$"
-              maxlength="9"
-              class="input"
-            />
-            <p class="field__error" id="error-paciente-dni" aria-live="polite"></p>
-            <p class="field__hint">Formato: 8 números seguidos de una letra mayúscula (ej. 12345678A)</p>
-          </div>
-
-          <div class="field">
-            <label for="paciente-telefono">Teléfono</label>
-            <input
-              type="tel"
-              id="paciente-telefono"
-              name="paciente-telefono"
-              placeholder="600 111 222"
-              required
-              class="input"
-            />
-            <p class="field__error" id="error-paciente-telefono" aria-live="polite"></p>
-          </div>
-
-          <div class="field">
-            <label for="paciente-tipo">Tipo de paciente</label>
+          <div class="filtro-tipo">
+            <label for="filtro-tipo-paciente">Tipo de paciente</label>
             <select
-              id="paciente-tipo"
-              name="paciente-tipo"
-              required
+              id="filtro-tipo-paciente"
+              aria-label="Filtrar por tipo de paciente"
               class="input"
             >
+              <option value="">Todos los tipos</option>
               <option value="urgencia">Urgencia</option>
               <option value="planta">Planta</option>
               <option value="casa">Casa</option>
             </select>
-            <p class="field__error" id="error-paciente-tipo" aria-live="polite"></p>
           </div>
+        </div>
 
-          <div class="pacientes-formulario__acciones">
-            <button type="button" class="btn btn--primary" id="btn-guardar-paciente">Guardar</button>
-            <button type="button" class="btn" id="btn-cancelar-paciente">Cancelar</button>
-          </div>
-        </form>
-      </section>
-
-      <!-- Tabla de pacientes -->
-      <section class="pacientes-tabla-seccion">
         <div class="pacientes-tabla-wrap">
           <table class="pacientes-tabla">
-            <caption>Pacientes registrados</caption>
+            <caption>Listado de pacientes</caption>
             <thead>
               <tr>
                 <th>Nombre</th>
                 <th>Apellidos</th>
-                <th>DNI</th>
                 <th>Teléfono</th>
                 <th>Tipo</th>
-                <th>Acciones</th>
               </tr>
             </thead>
-            <tbody id="pacientes-tabla-body">
-              <!-- Filas inyectadas por JavaScript -->
+            <tbody>
+              <tr>
+                <td>Luis Martín</td>
+                <td>Hernández</td>
+                <td>600 111 222</td>
+                <td><span class="badge tipo--urgencia">Urgencia</span></td>
+              </tr>
+              <tr>
+                <td>María Sánchez</td>
+                <td>Pérez</td>
+                <td>600 222 333</td>
+                <td><span class="badge tipo--planta">Planta</span></td>
+              </tr>
+              <tr>
+                <td>Pedro Gómez</td>
+                <td>Ruiz</td>
+                <td>600 333 444</td>
+                <td><span class="badge tipo--casa">Casa</span></td>
+              </tr>
+              <tr>
+                <td>Lucía Fernández</td>
+                <td>Torres</td>
+                <td>600 444 555</td>
+                <td><span class="badge tipo--urgencia">Urgencia</span></td>
+              </tr>
+              <tr>
+                <td>Diego Romero</td>
+                <td>Molina</td>
+                <td>600 555 666</td>
+                <td><span class="badge tipo--planta">Planta</span></td>
+              </tr>
             </tbody>
           </table>
         </div>
       </section>
     </main>
   </div>
-
-  <script src="../js/utils.js"></script>
-  <script src="../js/pages/pacientes.js"></script>
 </body>
 </html>
