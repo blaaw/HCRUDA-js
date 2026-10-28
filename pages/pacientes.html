@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HCRUDA — Gestión de Pacientes</title>
+  <link rel="icon" type="image/jpeg" href="../public/34a7e23742c910627feb9b92baabdf71.jpg" />
+  <link rel="stylesheet" href="../css/design-system.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/pacientes.css" />
+</head>
+<body>
+  <div class="pacientes-container">
+    <!-- Overlay del menú lateral -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Panel vertical de navegación -->
+    <nav class="sidebar-panel" id="sidebar-panel">
+      <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">✕</button>
+      <ul class="sidebar-menu">
+        <li><a href="citas.html" class="sidebar-link">Citas</a></li>
+        <li><a href="pacientes.html" class="sidebar-link sidebar-link--active">Pacientes</a></li>
+        <li><a href="doctores.html" class="sidebar-link">Doctores</a></li>
+        <li><a href="tratamientos.html" class="sidebar-link">Tratamientos</a></li>
+      </ul>
+    </nav>
+
+    <header class="pacientes-header">
+      <div class="pacientes-brand">
+        <button class="btn-hamburger" id="btn-hamburger" aria-label="Abrir menú de navegación">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <div class="pacientes-logo nm-sign" style="--r: var(--r-md);">
+          <img src="../public/favicon.jpg" alt="Logo HCRUDA" />
+        </div>
+        <h1 class="pacientes-title">Gestión de Pacientes</h1>
+      </div>
+
+      <div class="pacientes-user">
+        <div class="pacientes-user__avatar">U</div>
+        <div class="pacientes-user__info">
+          <span class="pacientes-user__name" id="usuario-nombre">Usuario</span>
+          <span class="pacientes-user__rol" id="usuario-rol">Rol</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-logout" id="btn-logout">
+        Cerrar sesión
+      </button>
+    </header>
+
+    <main class="pacientes-main">
+      <section class="pacientes-toolbar">
+        <button type="button" class="btn btn--primary" id="btn-nuevo-paciente">
+          Nuevo paciente
+        </button>
+      </section>
+
+      <!-- Filtros -->
+      <section class="pacientes-filtros">
+        <div class="filtro-buscar">
+          <label for="buscar-paciente">Buscar por nombre</label>
+          <input
+            type="search"
+            id="buscar-paciente"
+            placeholder="Escribe nombre o apellido…"
+            aria-label="Buscar paciente por nombre"
+            class="input"
+          />
+        </div>
+        <div class="filtro-tipo">
+          <label for="filtro-tipo-paciente">Tipo de paciente</label>
+          <select
+            id="filtro-tipo-paciente"
+            aria-label="Filtrar por tipo de paciente"
+            class="input"
+          >
+            <option value="">Todos los tipos</option>
+            <option value="urgencia">Urgencia</option>
+            <option value="planta">Planta</option>
+            <option value="casa">Casa</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Formulario alta / edición (oculto por defecto) -->
+      <section class="pacientes-formulario" id="pacientes-formulario" style="display:none;">
+        <h2 class="pacientes-formulario__titulo" id="pacientes-formulario-titulo">Nuevo paciente</h2>
+        <form id="form-paciente" novalidate>
+          <input type="hidden" id="paciente-id">
+
+          <div class="field">
+            <label for="paciente-nombre">Nombre</label>
+            <input
+              type="text"
+              id="paciente-nombre"
+              name="paciente-nombre"
+              placeholder="Luis"
+              required
+              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
+              minlength="2"
+              class="input"
+            />
+            <p class="field__error" id="error-paciente-nombre" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="paciente-apellidos">Apellidos</label>
+            <input
+              type="text"
+              id="paciente-apellidos"
+              name="paciente-apellidos"
+              placeholder="Martín Hernández"
+              required
+              pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
+              minlength="2"
+              class="input"
+            />
+            <p class="field__error" id="error-paciente-apellidos" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="paciente-dni">DNI</label>
+            <input
+              type="text"
+              id="paciente-dni"
+              name="paciente-dni"
+              placeholder="12345678A"
+              required
+              pattern="^[0-9]{8}[A-Z]$"
+              maxlength="9"
+              class="input"
+            />
+            <p class="field__error" id="error-paciente-dni" aria-live="polite"></p>
+            <p class="field__hint">Formato: 8 números seguidos de una letra mayúscula (ej. 12345678A)</p>
+          </div>
+
+          <div class="field">
+            <label for="paciente-telefono">Teléfono</label>
+            <input
+              type="tel"
+              id="paciente-telefono"
+              name="paciente-telefono"
+              placeholder="600 111 222"
+              required
+              class="input"
+            />
+            <p class="field__error" id="error-paciente-telefono" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="paciente-tipo">Tipo de paciente</label>
+            <select
+              id="paciente-tipo"
+              name="paciente-tipo"
+              required
+              class="input"
+            >
+              <option value="urgencia">Urgencia</option>
+              <option value="planta">Planta</option>
+              <option value="casa">Casa</option>
+            </select>
+            <p class="field__error" id="error-paciente-tipo" aria-live="polite"></p>
+          </div>
+
+          <div class="pacientes-formulario__acciones">
+            <button type="button" class="btn btn--primary" id="btn-guardar-paciente">Guardar</button>
+            <button type="button" class="btn" id="btn-cancelar-paciente">Cancelar</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Tabla de pacientes -->
+      <section class="pacientes-tabla-seccion">
+        <div class="pacientes-tabla-wrap">
+          <table class="pacientes-tabla">
+            <caption>Pacientes registrados</caption>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Teléfono</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="pacientes-tabla-body">
+              <!-- Filas inyectadas por JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../js/utils.js"></script>
+  <script src="../js/pages/pacientes.js"></script>
+</body>
+</html>
