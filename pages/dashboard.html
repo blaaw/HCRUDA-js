@@ -12,8 +12,27 @@
 </head>
 <body>
   <div class="dashboard-container">
+    <!-- Overlay del menú lateral -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Panel vertical de navegación -->
+    <nav class="sidebar-panel" id="sidebar-panel">
+      <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">✕</button>
+      <ul class="sidebar-menu">
+        <li><a href="pages/citas.html" class="sidebar-link">Citas</a></li>
+        <li><a href="pages/pacientes.html" class="sidebar-link">Pacientes</a></li>
+        <li><a href="pages/doctores.html" class="sidebar-link">Doctores</a></li>
+        <li><a href="pages/tratamientos.html" class="sidebar-link">Tratamientos</a></li>
+      </ul>
+    </nav>
+
     <header class="dashboard-header">
       <div class="dashboard-brand">
+        <button class="btn-hamburger" id="btn-hamburger" aria-label="Abrir menú de navegación">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
         <div class="dashboard-logo nm-sign" style="--r: var(--r-md);">
           <img src="../public/favicon.jpg" alt="Logo HCRUDA" />
         </div>

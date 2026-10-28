@@ -86,3 +86,19 @@ function filtrarPacientesTipo(event) {
     }
     
 }
+
+/* ───────── Menú lateral (hamburguesa) ───────── */
+
+const btnHamburger = document.getElementById("btn-hamburger")
+const sidebarPanel = document.getElementById("sidebar-panel")
+const sidebarOverlay = document.getElementById("sidebar-overlay")
+const sidebarClose = document.getElementById("sidebar-close")
+
+function toggleSidebar() {
+    const isOpen = sidebarPanel.classList.toggle("open")
+    sidebarOverlay.classList.toggle("open", isOpen)
+}
+
+btnHamburger.addEventListener("click", toggleSidebar)
+sidebarClose.addEventListener("click", toggleSidebar)
+sidebarOverlay.addEventListener("click", toggleSidebar)
