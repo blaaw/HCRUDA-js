@@ -11,7 +11,7 @@
 │   ├── registro.html       → Página de registro de usuarios (ya creada)
 │   ├── dashboard.html      → Panel principal con resumen, componente citas y tabla pacientes (ya creada)
 │   ├── citas.html          → Gestión de citas (pendiente de crear)
-│   ├── pacientes.html      → Gestión de pacientes (pendiente de crear)
+│   ├── pacientes.html      → Gestión de pacientes (ya creada: formulario alta/edición, filtros, tabla)
 │   ├── doctores.html       → Gestión de doctores (pendiente de crear)
 │   └── tratamientos.html   → Gestión de tratamientos (pendiente de crear)
 ├── css/                    → Hojas de estilo
@@ -22,6 +22,7 @@
 │       ├── login.css       → (ya creada)
 │       ├── registro.css    → (ya creada, con ajuste mobile)
 │       └── dashboard.css   → (ya creada: resumen, componente citas, tabla pacientes, badges de tipo y estado)
+│       └── pacientes.css   → (ya creada: formulario, filtros, tabla, menú lateral)
 ├── js/                     → Todo el JavaScript
 │   ├── utils.js            → Funciones auxiliares compartidas (fetch JSON, redirección con sesión) (ya creada)
 │   ├── pages/              → Lógica de cada página
@@ -93,18 +94,386 @@ Ningún archivo de `pages/` debe duplicar lógica que pertenezca a `utils.js` o 
 - CRUD completo de citas: listado, alta, modificar, eliminar.
 - Filtrado por fecha, médico, paciente o estado. Ordenado por distintos campos.
 
-### pacientes.html — Gestión de pacientes (pendiente de crear)
-- CRUD completo de pacientes: nombre, apellidos, DNI, teléfono, tipo.
-- Filtrado por tipo y ordenado por nombre, DNI o tipo.
+### pacientes.html — Gestión de pacientes (ya creada)
+- Formulario de alta y edición (oculto por defecto).
+- Tabla con columnas: Nombre, Apellidos, DNI, Teléfono, Tipo (badge de color), Acciones (Editar/Eliminar).
+- Filtros: search bar por nombre + select por tipo (Urgencia, Planta, Casa, Todos).
+- Menú lateral con hamburguesa idéntico al dashboard.
 
 ### doctores.html — Gestión de doctores (pendiente de crear)
+- Debe seguir el **patrón de layout base** (ver sección 3).
 - CRUD completo de doctores: nombre, apellidos, DNI, especialidad, departamento.
 - Filtrado por departamento o especialidad.
 
 ### tratamientos.html — Gestión de tratamientos (pendiente de crear)
+- Debe seguir el **patrón de layout base** (ver sección 3).
 - CRUD completo de tratamientos: descripción, fecha inicio, estado, médico, paciente.
 
-## 3. Web Component del menú
+### citas.html — Gestión de citas (pendiente de crear)
+- Debe seguir el **patrón de layout base** (ver sección 3).
+- CRUD completo de citas: listado, alta, modificar, eliminar.
+- Filtrado por fecha, médico, paciente o estado. Ordenado por distintos campos.
+
+## 3. Patrón de layout base (logo + sidebar)
+
+Todas las páginas de gestión (`dashboard.html`, `pacientes.html`, y las pendientes `citas.html`, `doctores.html`, `tratamientos.html`) comparten esta estructura de header y menú lateral. No se debe modificar el logo ni su tamaño.
+
+### 3.1 HTML — Estructura obligatoria
+
+```html
+<div class="<pagina>-container">
+  <!-- Overlay del menú lateral -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Panel vertical de navegación -->
+  <nav class="sidebar-panel" id="sidebar-panel">
+    <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">✕</button>
+    <ul class="sidebar-menu">
+      <li><a href="citas.html" class="sidebar-link">Citas</a></li>
+      <li><a href="pacientes.html" class="sidebar-link">Pacientes</a></li>
+      <li><a href="doctores.html" class="sidebar-link">Doctores</a></li>
+      <li><a href="tratamientos.html" class="sidebar-link">Tratamientos</a></li>
+    </ul>
+  </nav>
+
+  <header class="<pagina>-header">
+    <div class="<pagina>-brand">
+      <!-- HAMBURGUESA SIEMPRE A LA IZQUIERDA DEL LOGO -->
+      <button class="btn-hamburger" id="btn-hamburger" aria-label="Abrir menú de navegación">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <!-- LOGO: no tocar su tamaño ni sus clases -->
+      <div class="<pagina>-logo nm-sign" style="--r: var(--r-md);">
+        <img src="../public/34a7e23742c910627feb9b92baabdf71.jpg" alt="Logo HCRUDA" />
+      </div>
+      <h1 class="<pagina>-title">Título de la página</h1>
+    </div>
+
+    <div class="<pagina>-user">
+      <div class="<pagina>-user__avatar">U</div>
+      <div class="<pagina>-user__info">
+        <span class="<pagina>-user__name" id="usuario-nombre">Usuario</span>
+        <span class="<pagina>-user__rol" id="usuario-rol">Rol</span>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-logout" id="btn-logout">
+      Cerrar sesión
+    </button>
+  </header>
+
+  <main class="<pagina>-main">
+    <!-- Contenido específico de cada página -->
+  </main>
+</div>
+```
+
+**Reglas clave del layout:**
+- El botón hamburguesa (`.btn-hamburger`) va **siempre antes del logo** dentro de `.<pagina>-brand`.
+- El logo (`.<pagina>-logo nm-sign`) **no se modifica**: conserva `width: 70px`, `height: 70px`, `img` a `60px`, y `nm-sign` con `--r: var(--r-md)`.
+- El bloque de usuario (`.<pagina>-user`) lleva `margin-left: auto` para ir a la derecha, antes del botón Cerrar sesión.
+- El orden en el header es siempre: **brand → user → logout**.
+
+### 3.2 CSS — Clases reutilizables
+
+Copiar este bloque en el CSS de cada página nueva, adaptando el prefijo `<pagina>`:
+
+```css
+.<pagina>-container {
+  min-height: 100vh;
+  padding: var(--sp-6);
+}
+
+.<pagina>-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-7);
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+
+.<pagina>-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.<pagina>-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: var(--r-md);
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.<pagina>-logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--r-sm);
+}
+
+.<pagina>-title {
+  font: 600 22px/30px var(--font-sans);
+  color: var(--text-strong);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.<pagina>-user {
+  margin-left: auto;
+  min-width: 300px;
+  max-width: 460px;
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--grad-raised);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-raised-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.<pagina>-user__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-strong);
+}
+
+.<pagina>-user__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  min-width: 0;
+  flex: 1;
+}
+
+.<pagina>-user__name {
+  font: 600 14px/1 var(--font-sans);
+  color: var(--text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.<pagina>-user__rol {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-logout {
+  --r: var(--r-md);
+  min-height: 40px;
+  padding: 0 var(--sp-4);
+  font: 600 12px/1 var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-strong);
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  cursor: pointer;
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.btn-logout:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.btn-logout:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+/* Sidebar */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(43 51 64 / 0.4);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease), visibility var(--dur) var(--ease);
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar-panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-3);
+  z-index: 101;
+  transform: translateX(-100%);
+  transition: transform var(--dur-slow) var(--ease);
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-6) var(--sp-4);
+  overflow-y: auto;
+}
+
+.sidebar-panel.open {
+  transform: translateX(0);
+}
+
+.sidebar-close {
+  --r: var(--r-md);
+  width: 40px;
+  height: 40px;
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--text-strong);
+  margin-bottom: var(--sp-6);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.sidebar-close:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.sidebar-close:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+.sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  font: 500 14px/1 var(--font-sans);
+  color: var(--text-default);
+  border-radius: var(--r-lg);
+  text-decoration: none;
+  background: var(--nm-bg);
+  box-shadow: var(--sh-inset-1);
+  transition: box-shadow var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus-visible {
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  color: var(--text-strong);
+  outline: none;
+}
+
+.sidebar-link:focus-visible {
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+.sidebar-link--active {
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  color: var(--cyan-700);
+}
+
+/* Hamburguesa */
+.btn-hamburger {
+  --r: var(--r-md);
+  width: 44px;
+  height: 44px;
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-right: var(--sp-3);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.btn-hamburger:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.btn-hamburger:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--text-muted);
+  border-radius: var(--r-xs);
+  margin: 3px 0;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+```
+
+### 3.3 JavaScript — Toggle del sidebar
+
+Añadir en el JS de cada página:
+
+```javascript
+const btnHamburger = document.getElementById("btn-hamburger")
+const sidebarPanel = document.getElementById("sidebar-panel")
+const sidebarOverlay = document.getElementById("sidebar-overlay")
+const sidebarClose = document.getElementById("sidebar-close")
+
+function toggleSidebar() {
+    const isOpen = sidebarPanel.classList.toggle("open")
+    sidebarOverlay.classList.toggle("open", isOpen)
+}
+
+btnHamburger.addEventListener("click", toggleSidebar)
+sidebarClose.addEventListener("click", toggleSidebar)
+sidebarOverlay.addEventListener("click", toggleSidebar)
+```
+
+## 4. Web Component del menú
 
 - Debe ser un **componente Web nativo** (custom element).
 - Se ubicará en el dashboard (y opcionalmente en otras páginas).
