@@ -539,3 +539,88 @@
   border-bottom: 1px solid var(--nm-light);
   margin: var(--sp-5) 0;
 }
+
+/* ───────── Responsive ───────── */
+
+@media (max-width: 900px) {
+  .pacientes-main {
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+  }
+
+  .pacientes-user {
+    min-width: auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  .pacientes-nuevo-form form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pacientes-nuevo-form .field {
+    min-width: auto;
+  }
+
+  .pacientes-nuevo-form .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .pacientes-container {
+    padding: var(--sp-4);
+  }
+
+  .pacientes-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-4);
+  }
+
+  .pacientes-brand {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+  }
+
+  .pacientes-title {
+    text-align: center;
+  }
+
+  .pacientes-user {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+  }
+
+  .pacientes-user__info {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pacientes-user__name,
+  .pacientes-user__rol {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .btn-logout {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pacientes-filtros {
+    flex-direction: column;
+  }
+
+  .filtro-buscar,
+  .filtro-tipo {
+    min-width: auto;
+    width: 100%;
+  }
+}

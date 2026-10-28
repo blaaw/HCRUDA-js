@@ -559,3 +559,84 @@
   margin: 3px 0;
   transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease), background var(--dur) var(--ease);
 }
+
+/* ───────── Responsive ───────── */
+
+@media (max-width: 900px) {
+  .dashboard-user {
+    min-width: auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  .citas-estados {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .estado-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pacientes-filtros {
+    flex-direction: column;
+  }
+
+  .filtro-buscar,
+  .filtro-tipo {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-container {
+    padding: var(--sp-4);
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-4);
+  }
+
+  .dashboard-brand {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+  }
+
+  .dashboard-title {
+    text-align: center;
+  }
+
+  .dashboard-user {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+  }
+
+  .dashboard-user__info {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dashboard-user__name,
+  .dashboard-user__rol {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .btn-logout {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dashboard-resumen {
+    grid-template-columns: 1fr;
+  }
+}
