@@ -13,3 +13,18 @@ function redirigirConSesion(usuario, rol, url) {
     window.sessionStorage.setItem("session", JSON.stringify(sesionUsuario))
     location.href = url
 }
+
+function identificarUsuarioSesion(usuarios) {
+    let usuarioSession = undefined
+    let session = {}
+    if (window.sessionStorage.getItem("session")) {
+        session = JSON.parse(window.sessionStorage.getItem("session"))
+    } else {
+        location.href = "../index.html"
+    }
+
+    usuarioSession = usuarios.find(usuario => usuario.id == session.usuario)
+    if (!usuarioSession) {
+        location.href = "../index.html"
+    }
+}
