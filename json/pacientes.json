@@ -5,7 +5,8 @@
     "apellidos": "Hernández",
     "dni": "11111111A",
     "telefono": "600111222",
-    "tipo": "urgencia"
+    "tipo": "urgencia",
+    "foto": "https://i.pravatar.cc/150?img=1"
   },
   {
     "id": "P002",
@@ -13,7 +14,8 @@
     "apellidos": "Pérez",
     "dni": "22222222B",
     "telefono": "600222333",
-    "tipo": "planta"
+    "tipo": "planta",
+    "foto": "https://i.pravatar.cc/150?img=2"
   },
   {
     "id": "P003",
@@ -21,7 +23,8 @@
     "apellidos": "Ruiz",
     "dni": "33333333C",
     "telefono": "600333444",
-    "tipo": "casa"
+    "tipo": "casa",
+    "foto": "https://i.pravatar.cc/150?img=3"
   },
   {
     "id": "P004",
@@ -29,7 +32,8 @@
     "apellidos": "Torres",
     "dni": "44444444D",
     "telefono": "600444555",
-    "tipo": "urgencia"
+    "tipo": "urgencia",
+    "foto": "https://i.pravatar.cc/150?img=4"
   },
   {
     "id": "P005",
@@ -37,7 +41,8 @@
     "apellidos": "Molina",
     "dni": "55555555E",
     "telefono": "600555666",
-    "tipo": "planta"
+    "tipo": "planta",
+    "foto": "https://i.pravatar.cc/150?img=5"
   },
   {
     "id": "P006",
@@ -45,7 +50,8 @@
     "apellidos": "Vega",
     "dni": "66666666F",
     "telefono": "600666777",
-    "tipo": "casa"
+    "tipo": "casa",
+    "foto": "https://i.pravatar.cc/150?img=6"
   },
   {
     "id": "P007",
@@ -53,7 +59,8 @@
     "apellidos": "Jiménez",
     "dni": "77777777G",
     "telefono": "600777888",
-    "tipo": "urgencia"
+    "tipo": "urgencia",
+    "foto": "https://i.pravatar.cc/150?img=7"
   },
   {
     "id": "P008",
@@ -61,6 +68,7 @@
     "apellidos": "Ortega",
     "dni": "88888888H",
     "telefono": "600888999",
-    "tipo": "casa"
+    "tipo": "casa",
+    "foto": "https://i.pravatar.cc/150?img=8"
   }
 ]
