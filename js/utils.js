@@ -26,5 +26,16 @@ function identificarUsuarioSesion(usuarios) {
     usuarioSession = usuarios.find(usuario => usuario.id == session.usuario)
     if (!usuarioSession) {
         location.href = "../index.html"
+    } else {
+        pintarUsuario(usuarioSession.nombre, usuarioSession.rol)
     }
+}
+
+function pintarUsuario(nombre, rol) {
+    document.getElementById("usuario-nombre")
+        .textContent = nombre
+    document.getElementById("usuario-rol")
+        .textContent = rol
+    document.getElementById("user__avatar")
+        .textContent = nombre.charAt(0)
 }

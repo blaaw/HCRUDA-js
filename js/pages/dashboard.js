@@ -18,14 +18,6 @@ onload = () => {
         .addEventListener("click", toggleSidebar)
 }
 
-function pintarUsuario(nombre, rol) { //to be reworked
-    document.getElementById("usuario-nombre")
-        .textContent = nombre
-    document.getElementById("usuario-rol")
-        .textContent = rol
-    document.getElementsByClassName("dashboard-user__avatar")[0]
-        .textContent = nombre.charAt(0)
-}
 
 function pintarTablaPacientes(listaPacientes) {
     const tbody = document.querySelector("tbody")
