@@ -10,6 +10,12 @@ onload = () => {
         .addEventListener("keyup", filtrarPacientesNombre)
     document.getElementById("filtro-tipo-paciente")
         .addEventListener("change", filtrarPacientesTipo)
+    document.getElementById("btn-hamburger")
+        .addEventListener("click", toggleSidebar)
+    document.getElementById("sidebar-close")
+        .addEventListener("click", toggleSidebar)
+    document.getElementById("sidebar-overlay")
+        .addEventListener("click", toggleSidebar)
 }
 
 function pintarUsuario(nombre, rol) { //to be reworked
@@ -69,18 +75,10 @@ function filtrarPacientesTipo(event) {
     
 }
 
-/* ───────── Menú lateral (hamburguesa) ───────── */
-
-const btnHamburger = document.getElementById("btn-hamburger")
-const sidebarPanel = document.getElementById("sidebar-panel")
-const sidebarOverlay = document.getElementById("sidebar-overlay")
-const sidebarClose = document.getElementById("sidebar-close")
-
 function toggleSidebar() {
+    const sidebarClose = document.getElementById("sidebar-close")
+    const sidebarPanel = document.getElementById("sidebar-panel")
+
     const isOpen = sidebarPanel.classList.toggle("open")
     sidebarOverlay.classList.toggle("open", isOpen)
 }
-
-btnHamburger.addEventListener("click", toggleSidebar)
-sidebarClose.addEventListener("click", toggleSidebar)
-sidebarOverlay.addEventListener("click", toggleSidebar)
