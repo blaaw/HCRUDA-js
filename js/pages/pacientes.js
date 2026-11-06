@@ -28,6 +28,7 @@ function pintarTablaPacientes(listaPacientes) {
     })
     tbody.innerHTML = html
 }
+
 function pintarComponente(idPaciente) {
     document.querySelector("paciente-detalle").remove()
     let pacienteDetalle = document.createElement("paciente-detalle")

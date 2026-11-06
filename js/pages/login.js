@@ -1,7 +1,7 @@
 let usuarios = []
-window.sessionStorage.removeItem("session")
 
 onload = () => {
+    window.sessionStorage.removeItem("session") //la sesion si vas atras con las flechas se mantiene, pero si actualizas en index ya se quita de verdad. supongo que es algun tema de caché, igual xium 
     cargarGuardarEjecutar(usuarios, "json/usuarios.json")
     document.getElementById("btn-login")
         .addEventListener("click", checkearLoginVacio)
