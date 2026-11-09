@@ -63,3 +63,21 @@ function filtrarPacientesTipo(event) {
     }
     
 }
+
+/* CREAR nuevo paciente a traves de un submit en el formulario en vez de un button
+console.log(location.href)
+http://localhost:8300/pages/pacientes.html?nuevo-nombre=Ye&nuevo-apellidos=&nuevo-dni=&nuevo-telefono=&nuevo-tipo=urgencia debugger eval code:1:9
+undefined
+console.log(location.href.split("?"))
+Array [ "http://localhost:8300/pages/pacientes.html", "nuevo-nombre=Ye&nuevo-apellidos=&nuevo-dni=&nuevo-telefono=&nuevo-tipo=urgencia" ]
+debugger eval code:1:9
+undefined
+console.log(location.href.split("?")[1].split("&"))
+Array(5) [ "nuevo-nombre=Ye", "nuevo-apellidos=", "nuevo-dni=", "nuevo-telefono=", "nuevo-tipo=urgencia" ]
+console.log(location.href.split("?")[1].split("&").map(campo => campo.split("=")[0]))
+Array(5) [ "nuevo-nombre", "nuevo-apellidos", "nuevo-dni", "nuevo-telefono", "nuevo-tipo" ]
+debugger eval code:1:9
+undefined
+console.log(location.href.split("?")[1].split("&").map(campo => campo.split("=")[1]))
+Array(5) [ "Ye", "", "", "", "urgencia" 
+*/
