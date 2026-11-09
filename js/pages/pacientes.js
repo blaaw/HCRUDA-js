@@ -1,7 +1,7 @@
 let usuarios = []
 let pacientes = []
 let tratamientos = []
-import { paciente } from "../classes/Paciente.js"
+import { paciente } from "../classes/componentePaciente.js"
 cargarGuardarEjecutar(tratamientos, "../json/tratamientos.json")
 cargarGuardarEjecutar(usuarios, "../json/usuarios.json", identificarUsuarioSesion)
 
