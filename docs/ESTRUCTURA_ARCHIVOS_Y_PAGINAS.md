@@ -8,12 +8,12 @@
 / (raíz del proyecto)
 ├── index.html              → Página de login (punto de entrada, ya creada)
 ├── pages/                  → Todas las páginas HTML de la aplicación
-│   ├── registro.html       → Página de registro de usuarios (ya creada)
-│   ├── dashboard.html      → Panel principal con resumen, componente citas y tabla pacientes (ya creada)
-│   ├── citas.html          → Gestión de citas (pendiente de crear)
-│   ├── pacientes.html      → Gestión de pacientes (ya creada: formulario alta/edición, filtros, tabla)
-│   ├── doctores.html       → Gestión de doctores (pendiente de crear)
-│   └── tratamientos.html   → Gestión de tratamientos (pendiente de crear)
+│   ├── registro.html       → Página de registro de usuarios (ya creada; lógica pendiente en js/pages/registro.js)
+│   ├── dashboard.html      → Panel principal con resumen, tablas pacientes/doctores, componente citas y departamentos (ya creada)
+│   ├── pacientes.html      → Gestión de pacientes (ya creada: formulario alta, tabla, filtros nombre/tipo, detalle Web Component)
+│   ├── doctores.html       → Gestión de doctores (ya creada: formulario alta, tabla, filtros nombre/departamento, detalle Web Component)
+│   ├── citas.html          → Gestión de citas (pendiente: no existe)
+│   └── tratamientos.html   → Gestión de tratamientos (pendiente: no existe)
 ├── css/                    → Hojas de estilo
 │   ├── design-system.css   → Tokens CSS y variables del diseño (neumorphism) (ya creada)
 │   ├── base.css            → Estilos globales (html, body, reset, tipografía) (ya creada)
@@ -21,21 +21,22 @@
 │   └── pages/              → Estilos específicos por página
 │       ├── login.css       → (ya creada)
 │       ├── registro.css    → (ya creada, con ajuste mobile)
-│       └── dashboard.css   → (ya creada: resumen, componente citas, tabla pacientes, badges de tipo y estado)
-│       └── pacientes.css   → (ya creada: formulario, filtros, tabla, menú lateral)
+│       ├── dashboard.css   → (ya creada: resumen, tablas, badges, menú lateral)
+│       ├── pacientes.css   → (ya creada: formulario, filtros, tabla, detalle, menú lateral)
+│       └── doctores.css    → (ya creada: formulario, filtros, tabla, detalle, menú lateral)
 ├── js/                     → Todo el JavaScript
 │   ├── utils.js            → Funciones auxiliares compartidas (fetch JSON, redirección con sesión) (ya creada)
 │   ├── pages/              → Lógica de cada página
 │   │   ├── login.js        → Validación de login y redirección (ya creada)
 │   │   ├── registro.js     → Archivo vacío, pendiente de implementar (ya existe)
-│   │   └── dashboard.js    → Carga de datos, pintado de tabla de pacientes, filtros por nombre y tipo (ya creada)
-│   └── classes/            → Clases de objetos del modelo (pendiente de crear)
-│       ├── Departamento.js
-│       ├── Medico.js
-│       ├── Paciente.js
-│       ├── Cita.js
-│       ├── Tratamiento.js
-│       └── Usuario.js
+│   │   ├── dashboard.js    → Carga de datos, tablas pacientes/doctores, filtros por nombre y departamento (ya creada)
+│   │   ├── pacientes.js    → Alta de pacientes, tabla, filtros nombre/tipo, detalle Web Component (ya creada)
+│   │   ├── doctores.js     → Alta de doctores, tabla, filtros nombre/departamento, detalle Web Component (ya creada)
+│   │   └── (pendiente: citas.js, tratamientos.js)
+│   └── classes/            → Web Components de detalle (no son clases del modelo)
+│       ├── componentePaciente.js  → <paciente-detalle> (ya creada)
+│       └── componenteDoctor.js    → <medico-detalle> (ya creada)
+│   └── (pendiente: clases del modelo Departamento.js, Medico.js, Paciente.js, Cita.js, Tratamiento.js, Usuario.js)
 ├── json/                   → Datos de simulación (seed, ya creados)
 │   ├── departamentos.json  → 3 items
 │   ├── medicos.json        → 5 items
@@ -85,35 +86,36 @@ Ningún archivo de `pages/` debe duplicar lógica que pertenezca a `utils.js` o 
 ### dashboard.html — Panel principal (ya creada)
 - **Solo accesible si hay sesión iniciada.** Si no, redirige al login.
 - Header con logo, título, bloque de usuario (avatar + nombre y rol a la derecha, antes de Cerrar sesión) y botón Cerrar sesión.
-- **Resumen arriba**: tarjetas de Doctores y Tratamientos activos con valores numéricos.
-- **Componente pequeño de citas**: botones por estado (Pendientes, Confirmadas, Completadas, Canceladas, Todas) con total de citas más grande debajo.
-- **Sección pacientes**: search bar para buscar por nombre + select para filtrar por tipo (Todos/Urgencia/Planta/Casa) + tabla de pacientes con columnas: Nombre, Apellidos, DNI, Teléfono, Tipo (badge de color), Tratamiento (badge de estado o `---`).
-- Filtros activos: búsqueda por nombre (keyup) y filtro por tipo (change).
+- **Resumen arriba**: tablas de Pacientes y Doctores, componente de Citas y listado de Departamentos.
+- **Tabla pacientes**: search bar para buscar por nombre + tabla con columnas Nombre, Apellidos, DNI, Teléfono, Tipo (badge), Tratamiento (estado o `---`). Filtro por nombre (keyup).
+- **Tabla doctores**: search bar para buscar por nombre + tabla con columnas Nombre, Apellidos, DNI, Especialidad, Departamento (badge). Filtros por nombre (keyup) y departamento (change).
+- **Componente citas**: botones por estado (Pendientes, Confirmadas, Completadas, Canceladas, Todas) con total de citas.
+- Menú lateral con hamburguesa idéntico al de pacientes/doctores.
+- Navega a pacientes.html y doctores.html al hacer clic en una fila (guarda id en `localStorage`).
 
 ### citas.html — Gestión de citas (pendiente de crear)
+- No existe todavía. Debe seguir el **patrón de layout base** (ver sección 3).
 - CRUD completo de citas: listado, alta, modificar, eliminar.
 - Filtrado por fecha, médico, paciente o estado. Ordenado por distintos campos.
 
 ### pacientes.html — Gestión de pacientes (ya creada)
 - Layout de dos columnas en el main:
-  - Izquierda (`.pacientes-detalle`): detalle del paciente seleccionado con foto de perfil (avatar desde pravatar.cc), nombre, DNI, teléfono, tipo (badge), y botones de acción (Editar, Eliminar, Ver historial clínico).
-  - Derecha (`.pacientes-tabla-seccion`): filtros (search bar por nombre + select por tipo) y tabla reducida con columnas: Nombre, Apellidos, DNI, Teléfono, Tipo, Acciones.
+  - Izquierda (`.pacientes-detalle`): detalle del paciente seleccionado con foto de perfil (avatar desde pravatar.cc), nombre, DNI, teléfono, tipo (badge), tratamiento (badge de estado + descripción) y botones de acción (Editar, Eliminar).
+  - Derecha (`.pacientes-tabla-seccion`): filtros (search bar por nombre + select por tipo) y tabla reducida con columnas: Nombre, Apellidos, Teléfono, Tipo.
 - Menú lateral con hamburguesa idéntico al dashboard.
-- Sin formulario de alta/edición oculto; las acciones se hacen desde el detalle o desde los botones de fila.
+- Formulario de alta horizontal arriba del main (nombre, apellidos, DNI, teléfono, tipo).
+- Web Component `<paciente-detalle>` para el detalle.
 
-### doctores.html — Gestión de doctores (pendiente de crear)
-- Debe seguir el **patrón de layout base** (ver sección 3).
-- CRUD completo de doctores: nombre, apellidos, DNI, especialidad, departamento.
-- Filtrado por departamento o especialidad.
+### doctores.html — Gestión de doctores (ya creada)
+- Sigue el **patrón de layout base** (ver sección 3).
+- Formulario de alta horizontal arriba del main (nombre, apellidos, DNI, especialidad, departamento).
+- Tabla con filtros (search por nombre + select por departamento) y columnas: Nombre, Apellidos, DNI, Especialidad, Departamento.
+- Detalle del doctor seleccionado como Web Component `<medico-detalle>` con botones Editar y Eliminar.
+- Menú lateral con hamburguesa.
 
 ### tratamientos.html — Gestión de tratamientos (pendiente de crear)
-- Debe seguir el **patrón de layout base** (ver sección 3).
+- No existe todavía. Debe seguir el **patrón de layout base** (ver sección 3).
 - CRUD completo de tratamientos: descripción, fecha inicio, estado, médico, paciente.
-
-### citas.html — Gestión de citas (pendiente de crear)
-- Debe seguir el **patrón de layout base** (ver sección 3).
-- CRUD completo de citas: listado, alta, modificar, eliminar.
-- Filtrado por fecha, médico, paciente o estado. Ordenado por distintos campos.
 
 ## 3. Patrón de layout base (logo + sidebar)
 
@@ -495,24 +497,24 @@ sidebarOverlay.addEventListener("click", toggleSidebar)
 | Capa | Carpeta | Qué contiene |
 |------|---------|--------------|
 | Entrada | raíz (`index.html`) | Login |
-| Vistas | `pages/*.html` | Una HTML por pantalla (registro, dashboard, citas, pacientes, doctores, tratamientos) |
-| Estilos | `css/` | Tokens del diseño, base, componentes y estilos por página |
+| Vistas | `pages/*.html` | registro, dashboard, pacientes, doctores (creadas). citas, tratamientos (pendientes) |
+| Estilos | `css/` | Tokens del diseño, base, componentes y estilos por página (login, registro, dashboard, pacientes, doctores) |
 | Utilidades | `js/utils.js` | Funciones auxiliares compartidas |
-| Modelo | `js/classes/*.js` | Clases de objetos (Departamento, Medico, Paciente, Cita, Tratamiento, Usuario) — pendiente |
-| Lógica de página | `js/pages/*.js` | Interacción DOM, eventos, CRUD y renderizado de cada pantalla |
-| Datos seed | `json/*.json` | Datos iniciales que simulan una base de datos (sin servidor real) |
+| Modelo | `js/classes/*.js` | Web Components de detalle (`componentePaciente.js`, `componenteDoctor.js`). Faltan clases del modelo (pendiente) |
+| Lógica de página | `js/pages/*.js` | login, dashboard, pacientes, doctores (creadas). registro vacío, citas y tratamientos pendientes |
+| Datos seed | `json/*.json` | 6 archivos de seed (usuarios, pacientes, medicos, departamentos, citas, tratamientos) |
 
 ## 6. Requisitos del proyecto que esta estructura cumple
 
-- ≥ 6 páginas HTML: login, registro, dashboard, citas, pacientes, doctores (+ tratamientos opcional).
-- Página de login y registro con validación de formularios (regex, tipos).
+- ≥ 6 páginas HTML: login, registro, dashboard, pacientes, doctores (creadas); citas y tratamientos (pendientes).
+- Página de login y registro con validación de formularios (regex, tipos). Lógica de registro pendiente.
 - Menú como componente Web (pendiente de implementar).
 - Gestión de ≥ 2 tipos de objetos con relación (pacientes y doctores, citas y tratamientos, etc.).
-- Cada objeto con ≥ 5 campos, constructor y ≥ 3 métodos (en `js/classes/` — pendiente).
-- CRUD completo (alta, modificar, eliminar, consultar) en las páginas de gestión.
-- Filtrado y ordenado por distintos campos en los listados.
+- Cada objeto con ≥ 5 campos, constructor y ≥ 3 métodos (en `js/classes/` — pendiente; actualmente solo hay Web Components de detalle).
+- CRUD completo (alta, modificar, eliminar, consultar): alta implementada en pacientes y doctores; modificar y eliminar pendientes.
+- Filtrado y ordenado por distintos campos en los listados (nombre implementado; departamento/tipo implementado en sus páginas).
 - Eventos variados (click en botones, keypress en formularios, cambio de selects).
-- Uso obligatorio de `setInterval` y `setTimeout`.
+- Uso obligatorio de `setInterval` y `setTimeout` (no implementado aún).
 - Carga inicial de objetos desde `json/` (no partir del sistema vacío).
-- Uso de `sessionStorage` y `localStorage` para sesión y datos.
+- Uso de `sessionStorage` y `localStorage` para sesión y datos (`sessionStorage` implementado; `localStorage` solo para pasar id entre dashboard y detalle).
 - Código organizado, comentado, con nombres legibles.

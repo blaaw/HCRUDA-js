@@ -244,6 +244,18 @@ const medico = medicos.find(m => m.id === cita.medicoId);
 ## 9. Archivos ya existentes en el proyecto (estado actual)
 
 - `json/pacientes.json`: 8 pacientes con datos ficticios.
-- `pages/dashboard.html`: ya incluye una tabla de pacientes con búsqueda por nombre y filtro por tipo (puede servir de referencia visual).
-- `js/pages/dashboard.js`: ya tiene lógica de carga de pacientes y filtros (puede reutilizarse como modelo).
+- `json/medicos.json`: 5 médicos con `departamentoId`.
+- `json/departamentos.json`: 3 departamentos.
+- `json/citas.json`: 6 citas.
+- `json/tratamientos.json`: 4 tratamientos.
+- `json/usuarios.json`: 2 usuarios para login.
+- `pages/dashboard.html`: ya incluye tablas de pacientes y doctores con búsqueda, componente de citas y listado de departamentos.
+- `pages/pacientes.html`: ya creada con formulario de alta, tabla con filtros (nombre/tipo) y detalle Web Component `<paciente-detalle>`.
+- `pages/doctores.html`: ya creada con formulario de alta, tabla con filtros (nombre/departamento) y detalle Web Component `<medico-detalle>`.
+- `js/pages/dashboard.js`: ya tiene lógica de carga de pacientes/doctores/citas, filtros por nombre y departamento.
+- `js/pages/pacientes.js`: ya tiene lógica de alta de pacientes, tabla, filtros nombre/tipo, detalle Web Component.
+- `js/pages/doctores.js`: ya tiene lógica de alta de doctores, tabla, filtros nombre/departamento, detalle Web Component.
+- `js/pages/registro.js`: existe pero vacío (pendiente de implementar).
 - `js/utils.js`: tiene `cargarGuardarEjecutar()` para hacer `fetch` de JSON y `redirigirConSesion()` para manejar sesión.
+- `js/classes/componentePaciente.js` y `js/classes/componenteDoctor.js`: Web Components de detalle (no son clases del modelo).
+- Faltan: `pages/citas.html`, `pages/tratamientos.html`, `js/pages/citas.js`, `js/pages/tratamientos.js`, clases del modelo en `js/classes/`, lógica de registro, Web Component del menú, `setInterval`/`setTimeout`, persistencia en `localStorage` para CRUD.

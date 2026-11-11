@@ -102,6 +102,7 @@ function toggleSidebar() {
     sidebarOverlay.classList.toggle("open", isOpen)
 }
 
+//TODO: transformar esto en una unica funcion general de utils
 function mostrarPaciente(id) {
     window.localStorage.setItem("paciente-dashboard", id)
     location.href = "pacientes.html"
