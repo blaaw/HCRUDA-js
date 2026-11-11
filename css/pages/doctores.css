@@ -1,0 +1,576 @@
+/* ─────────────────────────────
+   HCRUDA — Página de Doctores
+   ───────────────────────────── */
+
+.doctores-container {
+  min-height: 100vh;
+  padding: var(--sp-6);
+}
+
+/* ───────── Header ───────── */
+
+.doctores-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-7);
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+
+.doctores-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.doctores-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: var(--r-md);
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doctores-logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--r-sm);
+}
+
+.doctores-title {
+  font: 600 22px/30px var(--font-sans);
+  color: var(--text-strong);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.doctores-user {
+  margin-left: auto;
+  min-width: 300px;
+  max-width: 460px;
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--grad-raised);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-raised-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.doctores-user__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-strong);
+}
+
+.doctores-user__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  min-width: 0;
+  flex: 1;
+}
+
+.doctores-user__name {
+  font: 600 14px/1 var(--font-sans);
+  color: var(--text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.doctores-user__rol {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-logout {
+  --r: var(--r-md);
+  min-height: 40px;
+  padding: 0 var(--sp-4);
+  font: 600 12px/1 var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-strong);
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  cursor: pointer;
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.btn-logout:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.btn-logout:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+/* ───────── Formulario nuevo doctor (horizontal, arriba del main) ───────── */
+
+.doctores-nuevo-form {
+  --r: var(--r-lg);
+  padding: var(--sp-5);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-2);
+  margin-bottom: var(--sp-6);
+}
+
+.doctores-nuevo-form form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  align-items: flex-end;
+}
+
+.doctores-nuevo-form .field {
+  flex: 1;
+  min-width: 150px;
+  margin-bottom: 0;
+}
+
+/* ───────── Main: dos columnas (detalle | tabla) ───────── */
+
+.doctores-main {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: var(--sp-6);
+}
+
+/* Columna izquierda: detalle del doctor seleccionado */
+.doctores-detalle {
+  --r: var(--r-xl);
+  padding: var(--sp-6);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.doctores-detalle__foto {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--r-lg);
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--sp-4);
+}
+
+.doctores-detalle__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.doctores-detalle__datos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.doctores-detalle__nombre {
+  font: 600 22px/28px var(--font-sans);
+  color: var(--text-strong);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.doctores-detalle__dni,
+.doctores-detalle__telefono,
+.doctores-detalle__especialidad,
+.doctores-detalle__departamento {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font: 400 14px/1.5 var(--font-sans);
+  color: var(--text-default);
+  margin: 0;
+}
+
+.doctores-detalle__etiqueta {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.doctores-detalle__acciones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+.doctores-detalle__acciones .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Columna derecha: tabla con filtros */
+.doctores-tabla-seccion {
+  --r: var(--r-lg);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.doctores-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  padding: var(--sp-5) var(--sp-5) var(--sp-1);
+  background: var(--nm-bg-hi);
+  border-bottom: 1px solid var(--nm-hairline);
+}
+
+.filtro-buscar,
+.filtro-departamento {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  flex: 1;
+  min-width: 200px;
+}
+
+.filtro-buscar label,
+.filtro-departamento label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+}
+
+.doctores-tabla-wrap {
+  overflow-x: auto;
+  padding: var(--sp-1) var(--sp-5) var(--sp-5);
+}
+
+.doctores-tabla {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.doctores-tabla caption {
+  caption-side: top;
+  text-align: left;
+  padding: var(--sp-3) var(--sp-4);
+  font: 600 12px/16px var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+  background: transparent;
+}
+
+.doctores-tabla thead th {
+  position: sticky;
+  top: 0;
+  text-align: left;
+  padding: var(--sp-3) var(--sp-4);
+  font: 600 12px/16px var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+  background: var(--nm-bg-hi);
+  border-bottom: 1px solid var(--nm-hairline);
+  z-index: 1;
+}
+
+.doctores-tabla tbody td {
+  padding: var(--sp-3) var(--sp-4);
+  font: 400 14px/1.5 var(--font-sans);
+  color: var(--text-default);
+  border-bottom: 1px solid var(--nm-hairline);
+}
+
+.doctores-tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.doctores-tabla tbody tr:hover td {
+  background: var(--nm-bg-hi);
+}
+
+/* Badge de tipo / estado */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-1) var(--sp-3);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  border-radius: var(--r-pill);
+  color: var(--text-strong);
+}
+
+/* ───────── Menú lateral (hamburguesa) ───────── */
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(43 51 64 / 0.4);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease), visibility var(--dur) var(--ease);
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar-panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-3);
+  z-index: 101;
+  transform: translateX(-100%);
+  transition: transform var(--dur-slow) var(--ease);
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-6) var(--sp-4);
+  overflow-y: auto;
+}
+
+.sidebar-panel.open {
+  transform: translateX(0);
+}
+
+.sidebar-close {
+  --r: var(--r-md);
+  width: 40px;
+  height: 40px;
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--text-strong);
+  margin-bottom: var(--sp-6);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.sidebar-close:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.sidebar-close:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+.sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  font: 500 14px/1 var(--font-sans);
+  color: var(--text-default);
+  border-radius: var(--r-lg);
+  text-decoration: none;
+  background: var(--nm-bg);
+  box-shadow: var(--sh-inset-1);
+  transition: box-shadow var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus-visible {
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  color: var(--text-strong);
+  outline: none;
+}
+
+.sidebar-link:focus-visible {
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+.sidebar-link--active {
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  color: var(--cyan-700);
+}
+
+/* Hamburguesa */
+.btn-hamburger {
+  --r: var(--r-md);
+  width: 44px;
+  height: 44px;
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-right: var(--sp-3);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.btn-hamburger:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.btn-hamburger:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--text-muted);
+  border-radius: var(--r-xs);
+  margin: 3px 0;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+
+/* ───────── Responsive ───────── */
+
+@media (max-width: 900px) {
+  .doctores-main {
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+  }
+
+  .doctores-user {
+    min-width: auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  .doctores-nuevo-form form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .doctores-nuevo-form .field {
+    min-width: auto;
+  }
+
+  .doctores-nuevo-form .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .doctores-container {
+    padding: var(--sp-4);
+  }
+
+  .doctores-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-4);
+  }
+
+  .doctores-brand {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+  }
+
+  .doctores-title {
+    text-align: center;
+  }
+
+  .doctores-user {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+  }
+
+  .doctores-user__info {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .doctores-user__name,
+  .doctores-user__rol {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .btn-logout {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .doctores-filtros {
+    flex-direction: column;
+  }
+
+  .filtro-buscar,
+  .filtro-departamento {
+    min-width: auto;
+    width: 100%;
+  }
+}
