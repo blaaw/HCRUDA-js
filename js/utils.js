@@ -39,3 +39,8 @@ function pintarUsuario(nombre, rol) {
     document.getElementById("user__avatar")
         .textContent = nombre.charAt(0)
 }
+
+function cerrarSession() {
+    window.sessionStorage.removeItem("session")
+    location.href = "../index.html"
+}

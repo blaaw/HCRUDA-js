@@ -7,6 +7,8 @@ cargarGuardarEjecutar(usuarios, "../json/usuarios.json", identificarUsuarioSesio
 
 onload = () => {
     cargarGuardarEjecutar(pacientes, "../json/pacientes.json", pintarTablaPacientes)
+    document.getElementById("btn-logout")
+        .addEventListener("click", cerrarSession)
     document.getElementById("buscar-paciente")
         .addEventListener("keyup", filtrarPacientesNombre)
     document.getElementById("filtro-tipo-paciente")
