@@ -11,6 +11,8 @@ onload = () => {
         .addEventListener("keyup", filtrarPacientesNombre)
     document.getElementById("filtro-tipo-paciente")
         .addEventListener("change", filtrarPacientesTipo)
+    document.getElementsByClassName("btn btn--primary")[0]
+        .addEventListener("click", validarFurmulario)
 }
 
 function pintarTablaPacientes(listaPacientes) {
@@ -64,20 +66,58 @@ function filtrarPacientesTipo(event) {
     
 }
 
-/* CREAR nuevo paciente a traves de un submit en el formulario en vez de un button
-console.log(location.href)
-http://localhost:8300/pages/pacientes.html?nuevo-nombre=Ye&nuevo-apellidos=&nuevo-dni=&nuevo-telefono=&nuevo-tipo=urgencia debugger eval code:1:9
-undefined
-console.log(location.href.split("?"))
-Array [ "http://localhost:8300/pages/pacientes.html", "nuevo-nombre=Ye&nuevo-apellidos=&nuevo-dni=&nuevo-telefono=&nuevo-tipo=urgencia" ]
-debugger eval code:1:9
-undefined
-console.log(location.href.split("?")[1].split("&"))
-Array(5) [ "nuevo-nombre=Ye", "nuevo-apellidos=", "nuevo-dni=", "nuevo-telefono=", "nuevo-tipo=urgencia" ]
-console.log(location.href.split("?")[1].split("&").map(campo => campo.split("=")[0]))
-Array(5) [ "nuevo-nombre", "nuevo-apellidos", "nuevo-dni", "nuevo-telefono", "nuevo-tipo" ]
-debugger eval code:1:9
-undefined
-console.log(location.href.split("?")[1].split("&").map(campo => campo.split("=")[1]))
-Array(5) [ "Ye", "", "", "", "urgencia" 
-*/
+function validarFurmulario(evento) {
+    evento.preventDefault()
+    let nombreInput = document.getElementById("nuevo-nombre")
+    let apellidosInput = document.getElementById("nuevo-apellidos")
+    let dniInput = document.getElementById("nuevo-dni")
+    let telefonoInput = document.getElementById("nuevo-telefono")
+    let tipoInput = document.getElementById("nuevo-tipo")
+    let hayErrores = false
+
+    if (!/[A-Za-zÁÉÍÓÚáéíóúÑñ ]+/.test(nombreInput.value.trim())) {
+        nombreInput.style.borderColor = "red"
+        hayErrores = true
+    }
+
+    if (!/[A-Za-zÁÉÍÓÚáéíóúÑñ ]+/.test(apellidosInput.value.trim())) {
+        apellidosInput.style.borderColor = "red"
+        hayErrores = true
+    }
+
+    if (!/[A-Za-zÁÉÍÓÚáéíóúÑñ ]+/.test(dniInput.value.trim())) {
+        dniInput.style.borderColor = "red"
+        hayErrores = true
+    }
+
+    if (!/^\d{9}$/.test(telefonoInput.value.trim())) {
+        telefonoInput.style.borderColor = "red"
+        hayErrores = true
+    }
+
+    if (!hayErrores) {
+        crearNuevoPaciente(
+            nombreInput.value.trim(),
+            apellidosInput.value.trim(),
+            dniInput.value.trim(),
+            telefonoInput.value.trim(),
+            tipoInput.value
+        )
+    }
+}
+
+function crearNuevoPaciente(nombre, apellidos, dni, telefono, tipo) {
+    const nuevoId = "P0" + ((pacientes.length + 1) < 10 ? 
+                        "0" + (pacientes.length + 1 ) : 
+                        pacientes.length + 1)
+    pacientes.push({
+        id: nuevoId,
+        nombre,
+        apellidos,
+        dni,
+        telefono,
+        tipo,
+        foto: "https://i.pravatar.cc/150?img=" + Math.floor(Math.random() * 10)
+    })
+    pintarTablaPacientes(pacientes)
+}
