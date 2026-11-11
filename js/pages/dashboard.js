@@ -35,7 +35,7 @@ function pintarTablaPacientes(listaPacientes) {
 
         let claseEstado = estadoTratamiento !== "---" ? `estado--${estadoTratamiento}` : ""
         html += `
-        <tr>
+        <tr onclick="mostrarPaciente('${paciente.id}')">
             <td>${paciente.nombre}</td>
             <td>${paciente.apellidos}</td>
             <td>${paciente.dni}</td>
@@ -75,4 +75,8 @@ function toggleSidebar() {
 
     const isOpen = sidebarPanel.classList.toggle("open")
     sidebarOverlay.classList.toggle("open", isOpen)
+}
+function mostrarPaciente(id) {
+    window.localStorage.setItem("paciente-dashboard", id)
+    location.href = "pacientes.html"
 }

@@ -7,6 +7,7 @@ cargarGuardarEjecutar(usuarios, "../json/usuarios.json", identificarUsuarioSesio
 
 onload = () => {
     cargarGuardarEjecutar(pacientes, "../json/pacientes.json", pintarTablaPacientes)
+    checkearPacienteDashboard()
     document.getElementById("btn-logout")
         .addEventListener("click", cerrarSession)
     document.getElementById("buscar-paciente")
@@ -45,7 +46,6 @@ function pintarComponente(idPaciente) {
     let paciente = pacientes.find(p => p.id == idPaciente)
     let tratamiento = tratamientos.find(t => t.pacienteId == idPaciente)
     
-    console.log(paciente)
     pacienteDetalle.setAttribute("paciente", JSON.stringify(paciente))
     pacienteDetalle.setAttribute("tratamiento", JSON.stringify(tratamiento))
     document.querySelector(".pacientes-main")
@@ -141,4 +141,12 @@ function crearNuevoPaciente(nombre, apellidos, dni, telefono, tipo) {
         foto: "https://i.pravatar.cc/150?img=" + Math.floor(Math.random() * 10)
     })
     pintarTablaPacientes(pacientes)
+}
+
+function checkearPacienteDashboard() {
+    let pacienteDashboard = window.localStorage.getItem("paciente-dashboard")
+    if (pacienteDashboard != null) {
+        pintarComponente(pacienteDashboard)
+        window.localStorage.clear()
+    }
 }
