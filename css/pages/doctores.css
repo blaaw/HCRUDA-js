@@ -344,6 +344,24 @@
   color: var(--text-strong);
 }
 
+.departamento--cardiologia {
+  background: rgb(181 69 63 / .12);
+  color: var(--danger);
+  box-shadow: inset 0 0 0 1px rgb(181 69 63 / .35);
+}
+
+.departamento--pediatria {
+  background: rgb(47 143 107 / .12);
+  color: var(--ok);
+  box-shadow: inset 0 0 0 1px rgb(47 143 107 / .35);
+}
+
+.departamento--odontologia {
+  background: rgb(168 106 18 / .12);
+  color: var(--warn);
+  box-shadow: inset 0 0 0 1px rgb(168 106 18 / .35);
+}
+
 /* ───────── Menú lateral (hamburguesa) ───────── */
 
 .sidebar-overlay {
