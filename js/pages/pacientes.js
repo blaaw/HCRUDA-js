@@ -13,6 +13,12 @@ onload = () => {
         .addEventListener("change", filtrarPacientesTipo)
     document.getElementsByClassName("btn btn--primary")[0]
         .addEventListener("click", validarFurmulario)
+    document.getElementById("btn-hamburger")
+        .addEventListener("click", toggleSidebar)
+    document.getElementById("sidebar-close")
+        .addEventListener("click", toggleSidebar)
+    document.getElementById("sidebar-overlay")
+        .addEventListener("click", toggleSidebar)
 }
 
 function pintarTablaPacientes(listaPacientes) {
@@ -109,6 +115,14 @@ function validarFurmulario(evento) {
         dniInput.value = ""
         telefonoInput.value = ""
     }
+}
+
+function toggleSidebar() {
+    const sidebarPanel = document.getElementById("sidebar-panel")
+    const sidebarOverlay = document.getElementById("sidebar-overlay")
+
+    const isOpen = sidebarPanel.classList.toggle("open")
+    sidebarOverlay.classList.toggle("open", isOpen)
 }
 
 function crearNuevoPaciente(nombre, apellidos, dni, telefono, tipo) {
