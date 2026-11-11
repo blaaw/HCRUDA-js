@@ -74,7 +74,7 @@ function filtrarDoctoresDepartamento(event) {
     const departamento = event.target.value
     if (departamento) {
     let doctoresFiltrados = doctores
-        .filter(doctor => doctor.departamento == departamento)
+        .filter(doctor => doctor.departamentoId == departamento)
     pintarTablaDoctores(doctoresFiltrados)
     } else {
         pintarTablaDoctores(doctores)
