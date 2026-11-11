@@ -54,27 +54,14 @@
       </button>
     </header>
 
-    <!-- Resumen arriba -->
-    <div class="dashboard-resumen">
-      <div class="resumen-card">
-        <p class="resumen-card__label">Doctores</p>
-        <p class="resumen-card__valor" id="stat-doctores">5</p>
-      </div>
-      <div class="resumen-card">
-        <p class="resumen-card__label">Tratamientos activos</p>
-        <p class="resumen-card__valor" id="stat-tratamientos">4</p>
-      </div>
-    </div>
+    <!-- Grid 2x2: dos overview arriba, dos tablas abajo -->
+    <div class="dashboard-grid">
 
-    <hr class="nm-divider" />
-
-    <main class="dashboard-main">
-      <!-- Componente pequeño de citas -->
-      <section class="citas-componente">
-        <header class="citas-header">
-          <h2 class="citas-title">Citas</h2>
+      <!-- Overview: Citas -->
+      <section class="overview citas-overview">
+        <header class="overview-header">
+          <h2 class="overview-title">Citas</h2>
         </header>
-
         <div class="citas-estados">
           <button type="button" class="estado-btn" id="btn-estado-pendiente">
             <span class="estado-btn__label">Pendientes</span>
@@ -92,19 +79,27 @@
             <span class="estado-btn__label">Todas</span>
           </button>
         </div>
-
         <div class="citas-total">
           <span class="citas-total__label">Total citas:</span>
           <span class="citas-total__numero" id="citas-total">10</span>
         </div>
       </section>
 
-      <!-- Búsqueda y tabla de pacientes -->
-      <section class="pacientes-seccion">
-        <header class="pacientes-header">
-          <h2 class="pacientes-title">Pacientes</h2>
+      <!-- Overview: Departamentos -->
+      <section class="overview departamentos-overview">
+        <header class="overview-header">
+          <h2 class="overview-title">Departamentos</h2>
         </header>
+        <div class="departamentos-list" id="departamentos-list">
+          <!-- Se pinta con JS desde json/departamentos.json -->
+        </div>
+      </section>
 
+      <!-- Tabla: Pacientes -->
+      <section class="tabla-section pacientes-section">
+        <header class="tabla-header">
+          <h2 class="tabla-title">Pacientes</h2>
+        </header>
         <div class="pacientes-filtros">
           <div class="filtro-buscar">
             <label for="buscar-paciente">Buscar por nombre</label>
@@ -116,24 +111,9 @@
               class="input"
             />
           </div>
-
-          <div class="filtro-tipo">
-            <label for="filtro-tipo-paciente">Tipo de paciente</label>
-            <select
-              id="filtro-tipo-paciente"
-              aria-label="Filtrar por tipo de paciente"
-              class="input"
-            >
-              <option value="">Todos los tipos</option>
-              <option value="urgencia">Urgencia</option>
-              <option value="planta">Planta</option>
-              <option value="casa">Casa</option>
-            </select>
-          </div>
         </div>
-
         <div class="pacientes-tabla-wrap">
-          <table class="pacientes-tabla">
+          <table id="tabla-pacientes" class="pacientes-tabla">
             <caption>Pacientes registrados</caption>
             <thead>
               <tr>
@@ -150,7 +130,43 @@
           </table>
         </div>
       </section>
-    </main>
+
+      <!-- Tabla: Doctores -->
+      <section class="tabla-section doctores-section">
+        <header class="tabla-header">
+          <h2 class="tabla-title">Doctores</h2>
+        </header>
+        <div class="doctores-filtros">
+          <div class="filtro-buscar">
+            <label for="buscar-doctor">Buscar por nombre</label>
+            <input
+              type="search"
+              id="buscar-doctor"
+              placeholder="Escribe nombre o apellido…"
+              aria-label="Buscar doctor por nombre"
+              class="input"
+            />
+          </div>
+        </div>
+        <div class="doctores-tabla-wrap">
+          <table id="tabla-doctores" class="doctores-tabla">
+            <caption>Doctores registrados</caption>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>DNI</th>
+                <th>Especialidad</th>
+                <th>Departamento</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
   </div>
 
 </body>
