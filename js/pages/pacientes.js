@@ -76,22 +76,22 @@ function validarFurmulario(evento) {
     let hayErrores = false
 
     if (!/[A-Za-zÁÉÍÓÚáéíóúÑñ ]+/.test(nombreInput.value.trim())) {
-        nombreInput.style.borderColor = "red"
+        nombreInput.value = "campo no valido"
         hayErrores = true
     }
 
     if (!/[A-Za-zÁÉÍÓÚáéíóúÑñ ]+/.test(apellidosInput.value.trim())) {
-        apellidosInput.style.borderColor = "red"
+        apellidosInput.value = "campo no valido"
         hayErrores = true
     }
 
     if (!/[A-Za-zÁÉÍÓÚáéíóúÑñ ]+/.test(dniInput.value.trim())) {
-        dniInput.style.borderColor = "red"
+        dniInput.value = "campo no valido"
         hayErrores = true
     }
 
     if (!/^\d{9}$/.test(telefonoInput.value.trim())) {
-        telefonoInput.style.borderColor = "red"
+        telefonoInput.value = "campo no valido"
         hayErrores = true
     }
 
@@ -103,6 +103,11 @@ function validarFurmulario(evento) {
             telefonoInput.value.trim(),
             tipoInput.value
         )
+
+        nombreInput.value = ""
+        apellidosInput.value = ""
+        dniInput.value = ""
+        telefonoInput.value = ""
     }
 }
 
