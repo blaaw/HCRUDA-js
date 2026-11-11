@@ -54,48 +54,10 @@
       </button>
     </header>
 
-    <!-- Grid 2x2: dos overview arriba, dos tablas abajo -->
+    <!-- Grid 2x2: dos tablas arriba, dos overview abajo -->
     <div class="dashboard-grid">
 
-      <!-- Overview: Citas -->
-      <section class="overview citas-overview">
-        <header class="overview-header">
-          <h2 class="overview-title">Citas</h2>
-        </header>
-        <div class="citas-estados">
-          <button type="button" class="estado-btn" id="btn-estado-pendiente">
-            <span class="estado-btn__label">Pendientes</span>
-          </button>
-          <button type="button" class="estado-btn" id="btn-estado-confirmada">
-            <span class="estado-btn__label">Confirmadas</span>
-          </button>
-          <button type="button" class="estado-btn" id="btn-estado-completada">
-            <span class="estado-btn__label">Completadas</span>
-          </button>
-          <button type="button" class="estado-btn" id="btn-estado-cancelada">
-            <span class="estado-btn__label">Canceladas</span>
-          </button>
-          <button type="button" class="estado-btn" id="btn-estado-total">
-            <span class="estado-btn__label">Todas</span>
-          </button>
-        </div>
-        <div class="citas-total">
-          <span class="citas-total__label">Total citas:</span>
-          <span class="citas-total__numero" id="citas-total">10</span>
-        </div>
-      </section>
-
-      <!-- Overview: Departamentos -->
-      <section class="overview departamentos-overview">
-        <header class="overview-header">
-          <h2 class="overview-title">Departamentos</h2>
-        </header>
-        <div class="departamentos-list" id="departamentos-list">
-          <!-- Se pinta con JS desde json/departamentos.json -->
-        </div>
-      </section>
-
-      <!-- Tabla: Pacientes -->
+      <!-- Tabla: Pacientes (arriba izquierda) -->
       <section class="tabla-section pacientes-section">
         <header class="tabla-header">
           <h2 class="tabla-title">Pacientes</h2>
@@ -131,7 +93,7 @@
         </div>
       </section>
 
-      <!-- Tabla: Doctores -->
+      <!-- Tabla: Doctores (arriba derecha) -->
       <section class="tabla-section doctores-section">
         <header class="tabla-header">
           <h2 class="tabla-title">Doctores</h2>
@@ -163,6 +125,56 @@
             <tbody>
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <!-- Overview: Citas (abajo izquierda) -->
+      <section class="overview citas-overview">
+        <header class="overview-header">
+          <h2 class="overview-title">Citas</h2>
+        </header>
+        <div class="citas-estados">
+          <button type="button" class="estado-btn" id="btn-estado-pendiente">
+            <span class="estado-btn__label">Pendientes</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-confirmada">
+            <span class="estado-btn__label">Confirmadas</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-completada">
+            <span class="estado-btn__label">Completadas</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-cancelada">
+            <span class="estado-btn__label">Canceladas</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-total">
+            <span class="estado-btn__label">Todas</span>
+          </button>
+        </div>
+        <div class="citas-total">
+          <span class="citas-total__label">Total citas:</span>
+          <span class="citas-total__numero" id="citas-total">6</span>
+        </div>
+      </section>
+
+      <!-- Overview: Departamentos (abajo derecha) -->
+      <section class="overview departamentos-overview">
+        <header class="overview-header">
+          <h2 class="overview-title">Departamentos</h2>
+        </header>
+        <div class="departamentos-list" id="departamentos-list">
+          <!-- Datos falsos de ejemplo, se remplazará con JS -->
+          <div class="departamento-item">
+            <span class="departamento-badge departamento--cardiologia">Cardiología</span>
+            <span class="departamento-item__contador">2 doctores</span>
+          </div>
+          <div class="departamento-item">
+            <span class="departamento-badge departamento--pediatria">Pediatría</span>
+            <span class="departamento-item__contador">2 doctores</span>
+          </div>
+          <div class="departamento-item">
+            <span class="departamento-badge departamento--odontologia">Odontología</span>
+            <span class="departamento-item__contador">1 doctor</span>
+          </div>
         </div>
       </section>
 
