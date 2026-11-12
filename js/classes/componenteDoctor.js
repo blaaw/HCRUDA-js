@@ -13,6 +13,7 @@ class Medico extends HTMLElement {
         let html = `
       <section class="doctores-detalle">
         <div class="doctores-detalle__datos">
+          <span class="doctores-detalle__etiqueta">${medico.id}</span> 
           <h2 class="doctores-detalle__nombre">${medico.nombre} ${medico.apellidos}</h2>
           <p class="doctores-detalle__dni"><span class="doctores-detalle__etiqueta">DNI:</span> ${medico.dni}</p>
           <p class="doctores-detalle__especialidad"><span class="doctores-detalle__etiqueta">Especialidad:</span> ${medico.especialidad}</p>

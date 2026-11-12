@@ -16,6 +16,7 @@ class Paciente extends HTMLElement {
           <img src="${paciente.foto}" alt="Foto de perfil del paciente" />
         </div>
         <div class="pacientes-detalle__datos">
+          <span class="pacientes-detalle__etiqueta">${paciente.id}</span>
           <h2 class="pacientes-detalle__nombre">${paciente.nombre} ${paciente.apellidos}</h2>
           <p class="pacientes-detalle__dni"><span class="pacientes-detalle__etiqueta">DNI:</span> ${paciente.dni}</p>
           <p class="pacientes-detalle__telefono"><span class="pacientes-detalle__etiqueta">Teléfono:</span> ${paciente.telefono}</p>
