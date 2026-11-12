@@ -31,7 +31,7 @@ function pintarTablaPacientes(listaPacientes) {
 
     listaPacientes.forEach(paciente => {
         html += `
-        <tr onclick="mostrarPaciente('${paciente.id}')">
+        <tr onclick="mostrarComponentePorId('${paciente.id}','paciente', 'pacientes.html')">
             <td>${paciente.nombre}</td>
             <td>${paciente.apellidos}</td>
             <td>${paciente.telefono}</td>
@@ -49,7 +49,7 @@ function pintarTablaDoctores(listaDoctores) {
         let departamento = departamentos.find(d => d.id == doctor.departamentoId)
         let nombreDepartamento = departamento ? departamento.nombre : "Sin departamento"
         html += `
-        <tr onclick="mostrarDoctor('${doctor.id}')">
+        <tr onclick="mostrarComponentePorId('${doctor.id}','doctor','doctores.html')">
             <td>${doctor.nombre}</td>
             <td>${doctor.apellidos}</td>
             <td><span class="badge departamento--${nombreDepartamento.toLowerCase().replace(/á/g,'a').replace(/é/g,'e').replace(/í/g,'i').replace(/ó/g,'o').replace(/ú/g,'u').replace(/ñ/g,'n').replace(/ /g,'')}">${nombreDepartamento}</span></td>
@@ -87,13 +87,3 @@ function toggleSidebar() {
     sidebarOverlay.classList.toggle("open", isOpen)
 }
 
-//TODO: transformar esto en una unica funcion general de utils
-function mostrarPaciente(id) {
-    window.localStorage.setItem("paciente-dashboard", id)
-    location.href = "pacientes.html"
-}
-
-function mostrarDoctor(id) {
-    window.localStorage.setItem("doctor-dashboard", id)
-    location.href = "doctores.html"
-}

@@ -40,6 +40,19 @@ function pintarUsuario(nombre, rol) {
         .textContent = nombre.charAt(0)
 }
 
+function mostrarComponentePorId(id, componente, url) {
+    window.localStorage.setItem(componente + "-dashboard", id)
+    location.href = url
+}
+
+function checkearComponenteDashboard(componente) {
+    let componenteDashboard = window.localStorage.getItem(componente)
+    if (componenteDashboard != null) {
+        pintarComponente(componenteDashboard)
+        window.localStorage.removeItem(componente)
+    }
+}
+
 function cerrarSession() {
     window.sessionStorage.removeItem("session")
     location.href = "../index.html"

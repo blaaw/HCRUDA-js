@@ -8,7 +8,7 @@ cargarGuardarEjecutar(usuarios, "../json/usuarios.json", identificarUsuarioSesio
 onload = () => {
     cargarGuardarEjecutar(doctores, "../json/medicos.json", () => {
         pintarTablaDoctores(doctores)
-        checkearDoctorDashboard()
+        checkearComponenteDashboard("doctor-dashboard")
     })
     document.getElementById("btn-logout")
         .addEventListener("click", cerrarSession)
@@ -158,12 +158,4 @@ function crearNuevoDoctor(nombre, apellidos, dni, especialidad, departamento) {
         foto: "https://i.pravatar.cc/150?img=" + Math.floor(Math.random() * 10)
     })
     pintarTablaDoctores(doctores)
-}
-
-function checkearDoctorDashboard() {
-    let doctorDashboard = window.localStorage.getItem("doctor-dashboard")
-    if (doctorDashboard != null) {
-        pintarComponente(doctorDashboard)
-        window.localStorage.removeItem("doctor-dashboard")
-    }
 }

@@ -7,8 +7,8 @@ cargarGuardarEjecutar(usuarios, "../json/usuarios.json", identificarUsuarioSesio
 
 onload = () => {
     cargarGuardarEjecutar(pacientes, "../json/pacientes.json",()=>{
-         pintarTablaPacientes(pacientes)
-        checkearPacienteDashboard()
+        pintarTablaPacientes(pacientes)
+        checkearComponenteDashboard("paciente-dashboard")
     })
     document.getElementById("btn-logout")
         .addEventListener("click", cerrarSession)
@@ -146,10 +146,3 @@ function crearNuevoPaciente(nombre, apellidos, dni, telefono, tipo) {
     pintarTablaPacientes(pacientes)
 }
 
-function checkearPacienteDashboard() {
-    let pacienteDashboard = window.localStorage.getItem("paciente-dashboard")
-    if (pacienteDashboard != null) {
-        pintarComponente(pacienteDashboard)
-        window.localStorage.removeItem("paciente-dashboard")
-    }
-}
