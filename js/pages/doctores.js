@@ -6,8 +6,10 @@ cargarGuardarEjecutar(departamentos, "../json/departamentos.json")
 cargarGuardarEjecutar(usuarios, "../json/usuarios.json", identificarUsuarioSesion)
 
 onload = () => {
-    cargarGuardarEjecutar(doctores, "../json/medicos.json", pintarTablaDoctores)
-    checkearDoctorDashboard()
+    cargarGuardarEjecutar(doctores, "../json/medicos.json", () => {
+        pintarTablaDoctores(doctores)
+        checkearDoctorDashboard()
+    })
     document.getElementById("btn-logout")
         .addEventListener("click", cerrarSession)
     document.getElementById("buscar-medico")
@@ -162,6 +164,6 @@ function checkearDoctorDashboard() {
     let doctorDashboard = window.localStorage.getItem("doctor-dashboard")
     if (doctorDashboard != null) {
         pintarComponente(doctorDashboard)
-        window.localStorage.clear()
+        window.localStorage.removeItem("doctor-dashboard")
     }
 }
