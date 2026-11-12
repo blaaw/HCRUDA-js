@@ -33,6 +33,7 @@ function pintarTablaPacientes(listaPacientes) {
         <tr onclick=pintarComponente("${paciente.id}")>
             <td>${paciente.nombre}</td>
             <td>${paciente.apellidos}</td>
+            <td>${paciente.dni}</td>
             <td>${paciente.telefono}</td>
             <td><span class="badge tipo--${paciente.tipo}">${paciente.tipo}</span></td>
         </tr>`
