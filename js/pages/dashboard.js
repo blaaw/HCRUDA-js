@@ -32,24 +32,12 @@ function pintarTablaPacientes(listaPacientes) {
     let html = ""    
 
     listaPacientes.forEach(paciente => {
-        let tratamientoPaciente = tratamientos
-            .find(tratamiento => tratamiento.pacienteId == paciente.id)
-        let estadoTratamiento = "---"
-        if (tratamientoPaciente) {
-           estadoTratamiento = tratamientoPaciente.estado 
-        }
-
-        let claseEstado = estadoTratamiento !== "---" ? `estado--${estadoTratamiento}` : ""
         html += `
         <tr onclick="mostrarPaciente('${paciente.id}')">
             <td>${paciente.nombre}</td>
             <td>${paciente.apellidos}</td>
-            <td>${paciente.dni}</td>
             <td>${paciente.telefono}</td>
             <td><span class="badge tipo--${paciente.tipo}">${paciente.tipo}</span></td>
-            <td>${estadoTratamiento !== "---" 
-                ? `<span class="badge ${claseEstado}">${estadoTratamiento}</span>` 
-                : estadoTratamiento}</td>
         </tr>`
     })
     tbody.innerHTML = html
@@ -66,9 +54,8 @@ function pintarTablaDoctores(listaDoctores) {
         <tr onclick="mostrarDoctor('${doctor.id}')">
             <td>${doctor.nombre}</td>
             <td>${doctor.apellidos}</td>
-            <td>${doctor.dni}</td>
-            <td>${doctor.especialidad}</td>
             <td><span class="badge departamento--${nombreDepartamento.toLowerCase().replace(/á/g,'a').replace(/é/g,'e').replace(/í/g,'i').replace(/ó/g,'o').replace(/ú/g,'u').replace(/ñ/g,'n').replace(/ /g,'')}">${nombreDepartamento}</span></td>
+            <td>${doctor.especialidad}</td>
         </tr>`
     })
     tbody.innerHTML = html
