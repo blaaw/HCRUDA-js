@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HCRUDA — Gestión de Citas</title>
+  <link rel="icon" type="image/jpeg" href="../public/favicon.jpg" />
+  <link rel="stylesheet" href="../css/design-system.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages/citas.css" />
+</head>
+<body>
+  <div class="citas-container">
+    <!-- Overlay del menú lateral -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Panel vertical de navegación -->
+    <nav class="sidebar-panel" id="sidebar-panel">
+      <button class="sidebar-close" id="sidebar-close" aria-label="Cerrar menú">✕</button>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html" class="sidebar-link">Panel Principal</a></li>
+        <li><a href="citas.html" class="sidebar-link sidebar-link--active">Citas</a></li>
+        <li><a href="pacientes.html" class="sidebar-link">Pacientes</a></li>
+        <li><a href="doctores.html" class="sidebar-link">Doctores</a></li>
+        <li><a href="tratamientos.html" class="sidebar-link">Tratamientos</a></li>
+      </ul>
+    </nav>
+
+    <header class="citas-header">
+      <div class="citas-brand">
+        <button class="btn-hamburger" id="btn-hamburger" aria-label="Abrir menú de navegación">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <div class="citas-logo nm-sign" style="--r: var(--r-md);">
+          <img src="../public/favicon.jpg" alt="Logo HCRUDA" />
+        </div>
+        <h1 class="citas-title">Gestión de Citas</h1>
+      </div>
+
+      <div class="citas-user">
+        <div class="citas-user__avatar" id="user__avatar">U</div>
+        <div class="citas-user__info">
+          <span class="citas-user__name" id="usuario-nombre">Usuario</span>
+          <span class="citas-user__rol" id="usuario-rol">Rol</span>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-logout" id="btn-logout">
+        Cerrar sesión
+      </button>
+    </header>
+
+    <main class="citas-main">
+      <!-- Columna izquierda (más grande): listado de citas -->
+      <section class="citas-listado-seccion" aria-label="Listado de citas">
+
+        <div class="citas-buscar">
+          <h2 class="citas-listado-title">Citas programadas</h2>
+          <label for="buscar-cita">Buscar por ID, paciente o motivo…</label>
+          <input
+            type="search"
+            id="buscar-cita"
+            placeholder="Buscar por ID, paciente o motivo…"
+            aria-label="Buscar cita por ID, paciente o motivo"
+            class="input"
+          />
+        </div>
+
+        <div class="citas-filtros" aria-label="Filtrar citas por estado">
+          <button type="button" class="filtro-btn filtro-btn--activo" id="filtro-todas" aria-pressed="true">
+            Todas
+          </button>
+          <button type="button" class="filtro-btn" id="filtro-pendiente" aria-pressed="false">
+            Pendientes
+          </button>
+          <button type="button" class="filtro-btn" id="filtro-confirmada" aria-pressed="false">
+            Confirmadas
+          </button>
+          <button type="button" class="filtro-btn" id="filtro-completada" aria-pressed="false">
+            Completadas
+          </button>
+          <button type="button" class="filtro-btn" id="filtro-cancelada" aria-pressed="false">
+            Canceladas
+          </button>
+        </div>
+
+        <div class="citas-lista" id="citas-lista">
+          <article class="cita-item" data-id="C001" data-estado="pendiente">
+            <div class="cita-item__header">
+              <span class="cita-item__id">C001</span>
+              <span class="badge estado--pendiente">Pendiente</span>
+              <button type="button" class="btn btn--danger btn-eliminar-cita" aria-label="Eliminar cita C001">
+                Eliminar
+              </button>
+            </div>
+            <div class="cita-item__datos">
+              <p><span class="cita-item__etiqueta">Paciente:</span> Luis Martín Hernández</p>
+              <p><span class="cita-item__etiqueta">Médico:</span> Ana García López</p>
+              <p><span class="cita-item__etiqueta">Fecha:</span> 05/11/2026</p>
+              <p><span class="cita-item__etiqueta">Hora:</span> 09:30</p>
+            </div>
+          </article>
+
+          <article class="cita-item" data-id="C002" data-estado="confirmada">
+            <div class="cita-item__header">
+              <span class="cita-item__id">C002</span>
+              <span class="badge estado--confirmada">Confirmada</span>
+              <button type="button" class="btn btn--danger btn-eliminar-cita" aria-label="Eliminar cita C002">
+                Eliminar
+              </button>
+            </div>
+            <div class="cita-item__datos">
+              <p><span class="cita-item__etiqueta">Paciente:</span> María Sánchez Pérez</p>
+              <p><span class="cita-item__etiqueta">Médico:</span> Carlos Ruiz Sánchez</p>
+              <p><span class="cita-item__etiqueta">Fecha:</span> 06/11/2026</p>
+              <p><span class="cita-item__etiqueta">Hora:</span> 11:00</p>
+            </div>
+          </article>
+
+          <article class="cita-item" data-id="C003" data-estado="completada">
+            <div class="cita-item__header">
+              <span class="cita-item__id">C003</span>
+              <span class="badge estado--completada">Completada</span>
+              <button type="button" class="btn btn--danger btn-eliminar-cita" aria-label="Eliminar cita C003">
+                Eliminar
+              </button>
+            </div>
+            <div class="cita-item__datos">
+              <p><span class="cita-item__etiqueta">Paciente:</span> Pedro Gómez Ruiz</p>
+              <p><span class="cita-item__etiqueta">Médico:</span> Javier López Gómez</p>
+              <p><span class="cita-item__etiqueta">Fecha:</span> 07/11/2026</p>
+              <p><span class="cita-item__etiqueta">Hora:</span> 10:15</p>
+            </div>
+          </article>
+
+          <article class="cita-item" data-id="C004" data-estado="pendiente">
+            <div class="cita-item__header">
+              <span class="cita-item__id">C004</span>
+              <span class="badge estado--pendiente">Pendiente</span>
+              <button type="button" class="btn btn--danger btn-eliminar-cita" aria-label="Eliminar cita C004">
+                Eliminar
+              </button>
+            </div>
+            <div class="cita-item__datos">
+              <p><span class="cita-item__etiqueta">Paciente:</span> Lucía Fernández Torres</p>
+              <p><span class="cita-item__etiqueta">Médico:</span> Ana García López</p>
+              <p><span class="cita-item__etiqueta">Fecha:</span> 08/11/2026</p>
+              <p><span class="cita-item__etiqueta">Hora:</span> 16:00</p>
+            </div>
+          </article>
+
+          <article class="cita-item" data-id="C005" data-estado="confirmada">
+            <div class="cita-item__header">
+              <span class="cita-item__id">C005</span>
+              <span class="badge estado--confirmada">Confirmada</span>
+              <button type="button" class="btn btn--danger btn-eliminar-cita" aria-label="Eliminar cita C005">
+                Eliminar
+              </button>
+            </div>
+            <div class="cita-item__datos">
+              <p><span class="cita-item__etiqueta">Paciente:</span> Diego Romero Molina</p>
+              <p><span class="cita-item__etiqueta">Médico:</span> Elena Martínez Díaz</p>
+              <p><span class="cita-item__etiqueta">Fecha:</span> 09/11/2026</p>
+              <p><span class="cita-item__etiqueta">Hora:</span> 12:30</p>
+            </div>
+          </article>
+
+          <article class="cita-item" data-id="C006" data-estado="cancelada">
+            <div class="cita-item__header">
+              <span class="cita-item__id">C006</span>
+              <span class="badge estado--cancelada">Cancelada</span>
+              <button type="button" class="btn btn--danger btn-eliminar-cita" aria-label="Eliminar cita C006">
+                Eliminar
+              </button>
+            </div>
+            <div class="cita-item__datos">
+              <p><span class="cita-item__etiqueta">Paciente:</span> Carla Torres Vega</p>
+              <p><span class="cita-item__etiqueta">Médico:</span> Sofía Díaz Ruiz</p>
+              <p><span class="cita-item__etiqueta">Fecha:</span> 10/11/2026</p>
+              <p><span class="cita-item__etiqueta">Hora:</span> 08:45</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Columna derecha (más estrecha): formulario para añadir cita -->
+      <section class="citas-form-seccion" aria-label="Formulario para añadir cita">
+        <form id="form-nueva-cita" class="citas-form" novalidate>
+          <h2 class="citas-form-title">Nueva cita</h2>
+          <div class="field">
+            <label for="cita-paciente-id">ID Paciente</label>
+            <input
+              type="text"
+              id="cita-paciente-id"
+              name="cita-paciente-id"
+              placeholder="P001"
+              required
+              class="input"
+            />
+          </div>
+
+          <div class="field">
+            <label for="cita-medico-id">ID Médico</label>
+            <input
+              type="text"
+              id="cita-medico-id"
+              name="cita-medico-id"
+              placeholder="M001"
+              required
+              class="input"
+            />
+          </div>
+
+          <div class="field">
+            <label for="cita-fecha-hora">Fecha y hora</label>
+            <input
+              type="datetime-local"
+              id="cita-fecha-hora"
+              name="cita-fecha-hora"
+              required
+              class="input"
+            />
+          </div>
+
+          <div class="field">
+            <label for="cita-motivo">Motivo</label>
+            <textarea
+              id="cita-motivo"
+              name="cita-motivo"
+              placeholder="Motivo de la cita…"
+              required
+              class="textarea"
+            ></textarea>
+          </div>
+
+          <div class="field">
+            <label for="cita-estado">Estado</label>
+            <select
+              id="cita-estado"
+              name="cita-estado"
+              required
+              class="select"
+            >
+              <option value="pendiente">Pendiente</option>
+              <option value="confirmada">Confirmada</option>
+              <option value="completada">Completada</option>
+              <option value="cancelada">Cancelada</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn--primary">Añadir cita</button>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

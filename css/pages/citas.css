@@ -1,0 +1,596 @@
+/* ─────────────────────────────
+   HCRUDA — Página de Citas
+   ───────────────────────────── */
+
+.citas-container {
+  min-height: 100vh;
+  padding: var(--sp-6);
+}
+
+/* ───────── Header ───────── */
+
+.citas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-7);
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+}
+
+.citas-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.citas-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: var(--r-md);
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.citas-logo img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--r-sm);
+}
+
+.citas-title {
+  font: 600 28px/36px var(--font-sans);
+  color: var(--text-strong);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.citas-user {
+  margin-left: auto;
+  min-width: 300px;
+  max-width: 460px;
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--grad-raised);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-raised-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.citas-user__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-pill);
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-strong);
+}
+
+.citas-user__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  min-width: 0;
+  flex: 1;
+}
+
+.citas-user__name {
+  font: 600 14px/1 var(--font-sans);
+  color: var(--text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.citas-user__rol {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-logout {
+  --r: var(--r-md);
+  min-height: 40px;
+  padding: 0 var(--sp-4);
+  font: 600 12px/1 var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-strong);
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  cursor: pointer;
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.btn-logout:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.btn-logout:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+/* ───────── Main: dos columnas (izquierda más grande) ───────── */
+
+.citas-main {
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  gap: var(--sp-5);
+}
+
+/* Columna izquierda: listado de citas */
+.citas-listado-seccion {
+  --r: var(--r-lg);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.citas-listado-header {
+  margin: 0;
+}
+
+.citas-listado-title {
+  font: 600 20px/26px var(--font-sans);
+  color: var(--text-strong);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.citas-buscar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding: var(--sp-4) var(--sp-4) var(--sp-1);
+  background: var(--nm-bg-hi);
+  border-bottom: 1px solid var(--nm-hairline);
+}
+
+.citas-buscar label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+}
+
+/* Filtros: abajo a la izquierda de la sección de listado */
+.citas-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  background: var(--nm-bg);
+}
+
+.filtro-btn {
+  --r: var(--r-md);
+  padding: var(--sp-2) var(--sp-4);
+  font: 500 12px/1 var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-default);
+  background: var(--nm-bg);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-inset-1);
+  cursor: pointer;
+  transition: box-shadow var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.filtro-btn:hover {
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  color: var(--text-strong);
+}
+
+.filtro-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-inset-1), var(--focus-ring);
+}
+
+.filtro-btn--activo {
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  color: var(--cyan-700);
+}
+
+/* Lista de citas */
+.citas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  overflow-y: auto;
+}
+
+/* Tarjeta individual de cita */
+.cita-item {
+  --r: var(--r-md);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  padding: var(--sp-3);
+  margin-bottom: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.cita-item:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.cita-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+}
+
+.cita-item__id {
+  font: 600 18px/1 var(--font-sans);
+  color: var(--text-strong);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+/* Badge de estado dentro de la tarjeta de cita */
+.cita-item__header .badge {
+  font-size: 11px;
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Botón eliminar con un poquito de margin hacia la izquierda */
+.cita-item__header .btn.btn--danger.btn-eliminar-cita {
+  margin-left: var(--sp-2);
+  padding: 0 var(--sp-4);
+  min-height: auto;
+  height: 32px;
+  font-size: 12px;
+}
+
+.cita-item__datos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.cita-item__datos p {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  font: 400 13px/1.4 var(--font-sans);
+  color: var(--text-default);
+  margin: 0;
+}
+
+.cita-item__etiqueta {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+  font-size: 11px;
+  min-width: 6ch;
+}
+
+/* Badges de estado de cita */
+.badge.estado--pendiente {
+  background: rgb(168 106 18 / .12);
+  color: var(--warn);
+  box-shadow: inset 0 0 0 1px rgb(168 106 18 / .35);
+}
+
+.badge.estado--confirmada {
+  background: rgb(47 143 107 / .12);
+  color: var(--ok);
+  box-shadow: inset 0 0 0 1px rgb(47 143 107 / .35);
+}
+
+.badge.estado--completada {
+  background: rgb(11 100 117 / .12);
+  color: var(--cyan-700);
+  box-shadow: inset 0 0 0 1px rgb(11 100 117 / .35);
+}
+
+.badge.estado--cancelada {
+  background: rgb(181 69 63 / .12);
+  color: var(--danger);
+  box-shadow: inset 0 0 0 1px rgb(181 69 63 / .35);
+}
+
+/* Columna derecha: formulario de nueva cita */
+.citas-form-seccion {
+  --r: var(--r-lg);
+  background: var(--grad-raised);
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.citas-form-header {
+  margin: 0;
+}
+
+.citas-form-title {
+  font: 600 20px/26px var(--font-sans);
+  color: var(--text-strong);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.citas-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+}
+
+.citas-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  margin-bottom: 0;
+}
+
+.citas-form label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+}
+
+.citas-form .textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.citas-form .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ───────── Menú lateral (hamburguesa) ───────── */
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(43 51 64 / 0.4);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease), visibility var(--dur) var(--ease);
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar-panel {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-3);
+  z-index: 101;
+  transform: translateX(-100%);
+  transition: transform var(--dur-slow) var(--ease);
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-6) var(--sp-4);
+  overflow-y: auto;
+}
+
+.sidebar-panel.open {
+  transform: translateX(0);
+}
+
+.sidebar-close {
+  --r: var(--r-md);
+  width: 40px;
+  height: 40px;
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--text-strong);
+  margin-bottom: var(--sp-6);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.sidebar-close:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.sidebar-close:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+.sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  font: 500 14px/1 var(--font-sans);
+  color: var(--text-default);
+  border-radius: var(--r-lg);
+  text-decoration: none;
+  background: var(--nm-bg);
+  box-shadow: var(--sh-inset-1);
+  transition: box-shadow var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus-visible {
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  color: var(--text-strong);
+  outline: none;
+}
+
+.sidebar-link:focus-visible {
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+.sidebar-link--active {
+  background: var(--grad-raised);
+  box-shadow: var(--sh-raised-1);
+  color: var(--cyan-700);
+}
+
+/* Botón hamburguesa */
+.btn-hamburger {
+  --r: var(--r-md);
+  width: 44px;
+  height: 44px;
+  background: var(--grad-raised);
+  border: 0;
+  border-radius: var(--r);
+  box-shadow: var(--sh-raised-1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-right: var(--sp-3);
+  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.btn-hamburger:hover {
+  box-shadow: var(--sh-raised-2);
+  transform: translateY(-1px);
+}
+
+.btn-hamburger:focus-visible {
+  outline: none;
+  box-shadow: var(--sh-raised-1), var(--focus-ring);
+}
+
+.hamburger-line {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--text-muted);
+  border-radius: var(--r-xs);
+  margin: 3px 0;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+
+/* ───────── Responsive ───────── */
+
+@media (max-width: 900px) {
+  .citas-main {
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+  }
+
+  .citas-user {
+    min-width: auto;
+    max-width: none;
+    width: 100%;
+  }
+
+  .citas-buscar,
+  .citas-filtros {
+    padding-left: var(--sp-4);
+    padding-right: var(--sp-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .citas-container {
+    padding: var(--sp-4);
+  }
+
+  .citas-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-4);
+  }
+
+  .citas-brand {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+  }
+
+  .citas-title {
+    text-align: center;
+  }
+
+  .citas-user {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+  }
+
+  .citas-user__info {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .citas-user__name,
+  .citas-user__rol {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .btn-logout {
+    width: 100%;
+    justify-content: center;
+  }
+}
