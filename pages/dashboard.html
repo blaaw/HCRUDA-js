@@ -153,25 +153,28 @@
         </div>
       </section>
 
-      <!-- Overview: Departamentos (abajo derecha) -->
-      <section class="overview departamentos-overview">
+      <!-- Overview: Tratamientos (abajo derecha) -->
+      <section class="overview tratamientos-overview">
         <header class="overview-header">
-          <h2 class="overview-title">Departamentos</h2>
+          <h2 class="overview-title">Tratamientos</h2>
         </header>
-        <div class="departamentos-list" id="departamentos-list">
-          <!-- Datos falsos de ejemplo, se remplazará con JS -->
-          <div class="departamento-item">
-            <span class="departamento-badge departamento--cardiologia">Cardiología</span>
-            <span class="departamento-item__contador">2 doctores</span>
-          </div>
-          <div class="departamento-item">
-            <span class="departamento-badge departamento--pediatria">Pediatría</span>
-            <span class="departamento-item__contador">2 doctores</span>
-          </div>
-          <div class="departamento-item">
-            <span class="departamento-badge departamento--odontologia">Odontología</span>
-            <span class="departamento-item__contador">1 doctor</span>
-          </div>
+        <div class="tratamientos-estados">
+          <button type="button" class="estado-btn" id="btn-estado-tratamiento-activo">
+            <span class="estado-btn__label">Activos</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-tratamiento-finalizado">
+            <span class="estado-btn__label">Finalizados</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-tratamiento-suspendido">
+            <span class="estado-btn__label">Suspendidos</span>
+          </button>
+          <button type="button" class="estado-btn" id="btn-estado-tratamiento-total">
+            <span class="estado-btn__label">Todos</span>
+          </button>
+        </div>
+        <div class="tratamientos-total">
+          <span class="tratamientos-total__label">Total tratamientos:</span>
+          <span class="tratamientos-total__numero" id="tratamientos-total">4</span>
         </div>
       </section>
 

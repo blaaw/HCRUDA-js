@@ -1,8 +1,10 @@
 let usuarios = []
 let pacientes = []
+let tratamientos = []
 let doctores = []
 let departamentos = []
 let citas = []
+cargarGuardarEjecutar(tratamientos, "../json/tratamientos.json")
 cargarGuardarEjecutar(usuarios, "../json/usuarios.json", identificarUsuarioSesion)
 cargarGuardarEjecutar(doctores, "../json/medicos.json")
 cargarGuardarEjecutar(pacientes, "../json/pacientes.json")
@@ -30,12 +32,24 @@ function pintarTablaPacientes(listaPacientes) {
     let html = ""    
 
     listaPacientes.forEach(paciente => {
+        let tratamientoPaciente = tratamientos
+            .find(tratamiento => tratamiento.pacienteId == paciente.id)
+        let estadoTratamiento = "---"
+        if (tratamientoPaciente) {
+           estadoTratamiento = tratamientoPaciente.estado 
+        }
+
+        let claseEstado = estadoTratamiento !== "---" ? `estado--${estadoTratamiento}` : ""
         html += `
-        <tr onclick="mostrarComponentePorId('${paciente.id}','paciente', 'pacientes.html')">
+        <tr onclick="mostrarPaciente('${paciente.id}')">
             <td>${paciente.nombre}</td>
             <td>${paciente.apellidos}</td>
+            <td>${paciente.dni}</td>
             <td>${paciente.telefono}</td>
             <td><span class="badge tipo--${paciente.tipo}">${paciente.tipo}</span></td>
+            <td>${estadoTratamiento !== "---" 
+                ? `<span class="badge ${claseEstado}">${estadoTratamiento}</span>` 
+                : estadoTratamiento}</td>
         </tr>`
     })
     tbody.innerHTML = html
@@ -49,11 +63,12 @@ function pintarTablaDoctores(listaDoctores) {
         let departamento = departamentos.find(d => d.id == doctor.departamentoId)
         let nombreDepartamento = departamento ? departamento.nombre : "Sin departamento"
         html += `
-        <tr onclick="mostrarComponentePorId('${doctor.id}','doctor','doctores.html')">
+        <tr onclick="mostrarDoctor('${doctor.id}')">
             <td>${doctor.nombre}</td>
             <td>${doctor.apellidos}</td>
-            <td><span class="badge departamento--${nombreDepartamento.toLowerCase().replace(/á/g,'a').replace(/é/g,'e').replace(/í/g,'i').replace(/ó/g,'o').replace(/ú/g,'u').replace(/ñ/g,'n').replace(/ /g,'')}">${nombreDepartamento}</span></td>
+            <td>${doctor.dni}</td>
             <td>${doctor.especialidad}</td>
+            <td><span class="badge departamento--${nombreDepartamento.toLowerCase().replace(/á/g,'a').replace(/é/g,'e').replace(/í/g,'i').replace(/ó/g,'o').replace(/ú/g,'u').replace(/ñ/g,'n').replace(/ /g,'')}">${nombreDepartamento}</span></td>
         </tr>`
     })
     tbody.innerHTML = html
@@ -87,3 +102,12 @@ function toggleSidebar() {
     sidebarOverlay.classList.toggle("open", isOpen)
 }
 
+function mostrarPaciente(id) {
+    window.localStorage.setItem("paciente-dashboard", id)
+    location.href = "pacientes.html"
+}
+
+function mostrarDoctor(id) {
+    window.localStorage.setItem("doctor-dashboard", id)
+    location.href = "doctores.html"
+}

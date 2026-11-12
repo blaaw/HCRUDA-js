@@ -146,7 +146,7 @@
   box-shadow: var(--sh-raised-2);
   display: flex;
   flex-direction: column;
-  gap: var(--sp-4);
+  gap: var(--sp-3);
 }
 
 .overview-header {
@@ -222,61 +222,32 @@
   color: var(--text-strong);
 }
 
-/* Departamentos overview */
+/* Tratamientos overview (estilo idéntico al de citas) */
 
-.departamentos-list {
+.tratamientos-estados {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: var(--sp-3);
 }
 
-.departamento-item {
+.tratamientos-total {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--sp-3);
-  padding: var(--sp-3) var(--sp-4);
-  background: var(--nm-bg-hi);
-  border-radius: var(--r-md);
-  box-shadow: var(--sh-inset-1);
+  padding-top: var(--sp-1);
+  margin-top: auto;
 }
 
-.departamento-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-1);
-  padding: var(--sp-1) var(--sp-3);
-  font-size: 11px;
-  font-weight: 600;
+.tratamientos-total__label {
+  font-size: 13px;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: var(--tracking-label);
-  border-radius: var(--r-pill);
+}
+
+.tratamientos-total__numero {
+  font: 600 28px/36px var(--font-sans);
   color: var(--text-strong);
-}
-
-.departamento-badge.departamento--cardiologia {
-  background: rgb(181 69 63 / .12);
-  color: var(--danger);
-  box-shadow: inset 0 0 0 1px rgb(181 69 63 / .35);
-}
-
-.departamento-badge.departamento--pediatria {
-  background: rgb(47 143 107 / .12);
-  color: var(--ok);
-  box-shadow: inset 0 0 0 1px rgb(47 143 107 / .35);
-}
-
-.departamento-badge.departamento--odontologia {
-  background: rgb(168 106 18 / .12);
-  color: var(--warn);
-  box-shadow: inset 0 0 0 1px rgb(168 106 18 / .35);
-}
-
-.departamento-item__contador {
-  font: 400 16px/1 var(--font-sans);
-  color: var(--text-strong);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-label);
 }
 
 /* ───────── Tabla sections (pacientes y doctores) ───────── */
