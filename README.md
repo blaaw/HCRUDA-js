@@ -81,7 +81,7 @@ También se puede abrir `index.html` directamente en el navegador.
   - Tabla de pacientes con búsqueda por nombre (keyup) y tratamiento asociado.
   - Tabla de doctores con búsqueda por nombre (keyup) y filtro por departamento (change).
   - Componente de citas con botones por estado (Pendientes, Confirmadas, Completadas, Canceladas, Todas) y total.
-  - Listado de departamentos.
+  - Resumen de tratamientos con conteo por estado (Activos, Finalizados, Suspendidos) y total.
   - Menú lateral (hamburguesa) con navegación a Citas, Pacientes, Doctores, Tratamientos.
 - **pages/pacientes.html**: gestión de pacientes con formulario de alta (nombre, apellidos, DNI, teléfono, tipo), tabla con filtros (nombre + tipo) y detalle del paciente seleccionado como Web Component `<paciente-detalle>`.
 - **pages/doctores.html**: gestión de doctores con formulario de alta (nombre, apellidos, DNI, especialidad, departamento), tabla con filtros (nombre + departamento) y detalle del doctor seleccionado como Web Component `<medico-detalle>`.

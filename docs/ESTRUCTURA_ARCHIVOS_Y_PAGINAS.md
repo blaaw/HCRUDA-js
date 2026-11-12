@@ -86,7 +86,7 @@ Ningún archivo de `pages/` debe duplicar lógica que pertenezca a `utils.js` o 
 ### dashboard.html — Panel principal (ya creada)
 - **Solo accesible si hay sesión iniciada.** Si no, redirige al login.
 - Header con logo, título, bloque de usuario (avatar + nombre y rol a la derecha, antes de Cerrar sesión) y botón Cerrar sesión.
-- **Resumen arriba**: tablas de Pacientes y Doctores, componente de Citas y listado de Departamentos.
+- **Resumen arriba**: tablas de Pacientes y Doctores, componente de Citas y resumen de Tratamientos (conteo por estado: Activos, Finalizados, Suspendidos, y total).
 - **Tabla pacientes**: search bar para buscar por nombre + tabla con columnas Nombre, Apellidos, DNI, Teléfono, Tipo (badge), Tratamiento (estado o `---`). Filtro por nombre (keyup).
 - **Tabla doctores**: search bar para buscar por nombre + tabla con columnas Nombre, Apellidos, DNI, Especialidad, Departamento (badge). Filtros por nombre (keyup) y departamento (change).
 - **Componente citas**: botones por estado (Pendientes, Confirmadas, Completadas, Canceladas, Todas) con total de citas.
