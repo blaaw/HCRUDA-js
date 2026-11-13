@@ -34,7 +34,7 @@ class Paciente extends HTMLElement {
         </div>
         <div class="pacientes-detalle__acciones">
           <button type="button" class="btn btn--primary">Editar paciente</button>
-          <button type="button" class="btn btn--danger">Eliminar paciente</button>
+          <button type="button" class="btn btn--danger" onclick="eliminarPaciente('${paciente.id}')">Eliminar paciente</button>
         </div>
       </section>
         `

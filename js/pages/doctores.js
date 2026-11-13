@@ -135,14 +135,6 @@ function validarFurmulario(evento) {
     }
 }
 
-function toggleSidebar() {
-    const sidebarPanel = document.getElementById("sidebar-panel")
-    const sidebarOverlay = document.getElementById("sidebar-overlay")
-
-    const isOpen = sidebarPanel.classList.toggle("open")
-    sidebarOverlay.classList.toggle("open", isOpen)
-}
-
 function crearNuevoDoctor(nombre, apellidos, dni, especialidad, departamento) {
     const nuevoId = "D0" + ((doctores.length + 1) < 10 ? 
                         "0" + (doctores.length + 1 ) : 
@@ -158,4 +150,21 @@ function crearNuevoDoctor(nombre, apellidos, dni, especialidad, departamento) {
         foto: "https://i.pravatar.cc/150?img=" + Math.floor(Math.random() * 10)
     })
     pintarTablaDoctores(doctores)
+}
+
+function eliminarDoctor(id) {
+    if (confirm("¿Estás seguro de eliminar este doctor?")) {
+        doctores = doctores.filter(d => d.id !== id)
+        pintarTablaDoctores(doctores)
+        checkearComponenteDashboard("doctor-dashboard")
+    }
+}
+window.eliminarDoctor = eliminarDoctor
+
+function toggleSidebar() {
+    const sidebarPanel = document.getElementById("sidebar-panel")
+    const sidebarOverlay = document.getElementById("sidebar-overlay")
+
+    const isOpen = sidebarPanel.classList.toggle("open")
+    sidebarOverlay.classList.toggle("open", isOpen)
 }

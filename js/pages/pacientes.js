@@ -122,14 +122,6 @@ function validarFurmulario(evento) {
     }
 }
 
-function toggleSidebar() {
-    const sidebarPanel = document.getElementById("sidebar-panel")
-    const sidebarOverlay = document.getElementById("sidebar-overlay")
-
-    const isOpen = sidebarPanel.classList.toggle("open")
-    sidebarOverlay.classList.toggle("open", isOpen)
-}
-
 function crearNuevoPaciente(nombre, apellidos, dni, telefono, tipo) {
     const nuevoId = "P0" + ((pacientes.length + 1) < 10 ? 
                         "0" + (pacientes.length + 1 ) : 
@@ -146,3 +138,19 @@ function crearNuevoPaciente(nombre, apellidos, dni, telefono, tipo) {
     pintarTablaPacientes(pacientes)
 }
 
+function eliminarPaciente(id) {
+    if (confirm("¿Estás seguro de eliminar este paciente?")) {
+        pacientes = pacientes.filter(p => p.id !== id)
+        pintarTablaPacientes(pacientes)
+        checkearComponenteDashboard("paciente-dashboard")
+    }
+}
+window.eliminarPaciente = eliminarPaciente
+
+function toggleSidebar() {
+    const sidebarPanel = document.getElementById("sidebar-panel")
+    const sidebarOverlay = document.getElementById("sidebar-overlay")
+
+    const isOpen = sidebarPanel.classList.toggle("open")
+    sidebarOverlay.classList.toggle("open", isOpen)
+}

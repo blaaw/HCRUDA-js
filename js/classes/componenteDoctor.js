@@ -21,7 +21,7 @@ class Medico extends HTMLElement {
         </div>
         <div class="doctores-detalle__acciones">
           <button type="button" class="btn btn--primary">Editar doctor</button>
-          <button type="button" class="btn btn--danger">Eliminar doctor</button>
+          <button type="button" class="btn btn--danger" onclick="eliminarDoctor('${medico.id}')">Eliminar doctor</button>
         </div>
       </section>
         `
