@@ -46,7 +46,7 @@ function pintarTablaCitas(listaCitas) {
             <div class="cita-item__header">
                 <span class="cita-item__id">${cita.id}</span>
                 <span class="badge estado--${cita.estado}">${cita.estado}</span>
-                <button type="button" class="btn btn--danger btn-eliminar-cita" aria-label="Eliminar cita ${cita.id}">
+                <button type="button" class="btn btn--danger btn-eliminar-cita" onclick="eliminarCita('${cita.id}')" aria-label="Eliminar cita ${cita.id}">
                     Eliminar
                 </button>
             </div>
@@ -59,13 +59,6 @@ function pintarTablaCitas(listaCitas) {
         </article>`
     })
     lista.innerHTML = html
-
-    document.querySelectorAll(".btn-eliminar-cita").forEach(btn => {
-        btn.addEventListener("click", function () {
-            const id = this.closest(".cita-item").dataset.id
-            eliminarCita(id)
-        })
-    })
 }
 
 function filtrarCitas() {
