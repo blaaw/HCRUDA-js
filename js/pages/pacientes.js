@@ -135,6 +135,7 @@ function crearNuevoPaciente(nombre, apellidos, dni, telefono, tipo) {
         tipo,
         foto: "https://i.pravatar.cc/150?img=" + Math.floor(Math.random() * 10)
     })
+    alert("Paciente creado")
     pintarTablaPacientes(pacientes)
 }
 

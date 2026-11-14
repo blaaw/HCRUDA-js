@@ -149,6 +149,7 @@ function crearNuevoDoctor(nombre, apellidos, dni, especialidad, departamento) {
         departamentoId: departamento,
         foto: "https://i.pravatar.cc/150?img=" + Math.floor(Math.random() * 10)
     })
+    alert("Doctor creado")
     pintarTablaDoctores(doctores)
 }
 

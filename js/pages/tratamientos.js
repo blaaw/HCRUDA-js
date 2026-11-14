@@ -21,6 +21,8 @@ onload = () => {
         .addEventListener("click", () => filtrarTratamientosEstado("suspendido"))
     document.getElementById("filtro-finalizado")
         .addEventListener("click", () => filtrarTratamientosEstado("finalizado"))
+    document.getElementById("btn-anadir-tratamiento")
+        .addEventListener("click", validarFormularioTratamiento)
     document.getElementById("btn-hamburger")
         .addEventListener("click", toggleSidebar)
     document.getElementById("sidebar-close")
@@ -92,6 +94,74 @@ function eliminarTratamiento(id) {
         tratamientos = tratamientos.filter(t => t.id !== id)
         pintarTablaTratamientos(tratamientos)
     }
+}
+
+function validarFormularioTratamiento(evento) {
+    evento.preventDefault()
+    let pacienteIdInput = document.getElementById("tratamiento-paciente-id")
+    let medicoIdInput = document.getElementById("tratamiento-medico-id")
+    let fechaInput = document.getElementById("tratamiento-fecha-inicio")
+    let descripcionInput = document.getElementById("tratamiento-descripcion")
+    let estadoInput = document.getElementById("tratamiento-estado")
+    let hayErrores = false
+
+    if (!pacienteIdInput.value.trim()) {
+        pacienteIdInput.value = "campo no valido"
+        hayErrores = true
+    }
+
+    if (!medicoIdInput.value.trim()) {
+        medicoIdInput.value = "campo no valido"
+        hayErrores = true
+    }
+
+    if (!validarFecha(fechaInput.value)) {
+        fechaInput.value = ""
+        hayErrores = true
+    }
+
+    if (!descripcionInput.value.trim()) {
+        descripcionInput.value = "campo no valido"
+        hayErrores = true
+    }
+
+    if (!estadoInput.value) {
+        estadoInput.value = "campo no valido"
+        hayErrores = true
+    }
+
+    if (!hayErrores) {
+        crearNuevoTratamiento(
+            pacienteIdInput.value.trim(),
+            medicoIdInput.value.trim(),
+            fechaInput.value,
+            descripcionInput.value.trim(),
+            estadoInput.value
+        )
+
+        pacienteIdInput.value = ""
+        medicoIdInput.value = ""
+        fechaInput.value = ""
+        descripcionInput.value = ""
+        estadoInput.value = ""
+    }
+}
+
+function crearNuevoTratamiento(pacienteId, medicoId, fechaInicio, descripcion, estado) {
+    const nuevoId = "T0" + ((tratamientos.length + 1) < 10 ? "0" + (tratamientos.length + 1) : tratamientos.length + 1)
+
+    const nuevoTratamiento = {
+        id: nuevoId,
+        pacienteId: pacienteId,
+        medicoId: medicoId,
+        descripcion: descripcion,
+        fechaInicio: fechaInicio,
+        estado: estado
+    }
+
+    tratamientos.push(nuevoTratamiento)
+    alert("Tratamiento creado")
+    pintarTablaTratamientos(tratamientos)
 }
 
 function toggleSidebar() {

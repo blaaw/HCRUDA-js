@@ -158,6 +158,7 @@ function crearNuevaCita(pacienteId, doctorId, fechaHora, motivo, estado) {
     }
 
     citas.push(nuevaCita)
+    alert("Cita creada")
     pintarTablaCitas(citas)
 }
 
