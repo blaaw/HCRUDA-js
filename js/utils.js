@@ -53,6 +53,14 @@ function checkearComponenteDashboard(componente) {
     }
 }
 
+function validarFecha(textoFechaHora) {
+    if (!textoFechaHora) return false
+    let fechaHora = new Date(textoFechaHora)
+    let ahora = new Date()
+    ahora.setHours(ahora.getHours() + 24)
+    return fechaHora >= ahora
+}
+
 function cerrarSession() {
     window.sessionStorage.removeItem("session")
     location.href = "../index.html"

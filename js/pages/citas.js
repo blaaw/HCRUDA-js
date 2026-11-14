@@ -23,6 +23,8 @@ onload = () => {
         .addEventListener("click", () => filtrarCitasEstado("completada"))
     document.getElementById("filtro-cancelada")
         .addEventListener("click", () => filtrarCitasEstado("cancelada"))
+    document.getElementById("btn-anadir-cita")
+        .addEventListener("click", validarFormulario)
     document.getElementById("btn-hamburger")
         .addEventListener("click", toggleSidebar)
     document.getElementById("sidebar-close")
@@ -87,6 +89,39 @@ function filtrarCitasEstado(estado) {
     } else {
         pintarTablaCitas(citas)
     }
+}
+
+function validarFormulario(){
+    let pacienteIdInput = document.getElementById("cita-paciente-id")
+    let doctorIdInput = document.getElementById("cita-medico-id")
+    let fechaHoraInput = document.getElementById("cita-fecha-hora")
+    let motivoInput = document.getElementById("cita-motivo")
+    let estadoInput = document.getElementById("cita-estado")
+    let hayErrores = false
+
+    if (!validarFecha(fechaHoraInput.value)) {
+        hayErrores = true
+    }
+
+    if (!hayErrores) {
+        crearNuevaCita(
+            pacienteIdInput.value.trim(),
+            doctorIdInput.value.trim(),
+            fechaHoraInput.value,
+            motivoInput.value.trim(),
+            estadoInput.value
+        )
+
+        pacienteIdInput.value = ""
+        doctorIdInput.value = ""
+        fechaHoraInput.value = ""
+        motivoInput.value = ""
+        estadoInput.value = ""
+    }
+}
+
+function crearNuevaCita(pacienteId, doctorId, fechaHora, motivo, estado) {
+    console.log(fechaHora + " es minimo un dia despues")
 }
 
 function eliminarCita(id) {
