@@ -156,7 +156,10 @@ function eliminarDoctor(id) {
     if (confirm("¿Estás seguro de eliminar este doctor?")) {
         doctores = doctores.filter(d => d.id !== id)
         pintarTablaDoctores(doctores)
-        checkearComponenteDashboard("doctor-dashboard")
+        document.querySelector("medico-detalle").remove()
+        let medicoDetalle = document.createElement("medico-detalle")
+        document.querySelector(".doctores-main")
+            .insertAdjacentElement("afterbegin",medicoDetalle)
     }
 }
 window.eliminarDoctor = eliminarDoctor

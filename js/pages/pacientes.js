@@ -142,7 +142,10 @@ function eliminarPaciente(id) {
     if (confirm("¿Estás seguro de eliminar este paciente?")) {
         pacientes = pacientes.filter(p => p.id !== id)
         pintarTablaPacientes(pacientes)
-        checkearComponenteDashboard("paciente-dashboard")
+        document.querySelector("paciente-detalle").remove()
+        let pacienteDetalle = document.createElement("paciente-detalle")
+        document.querySelector(".pacientes-main")
+            .insertAdjacentElement("afterbegin",pacienteDetalle)
     }
 }
 window.eliminarPaciente = eliminarPaciente
