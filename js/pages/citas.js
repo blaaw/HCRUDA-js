@@ -99,7 +99,25 @@ function validarFormulario(){
     let estadoInput = document.getElementById("cita-estado")
     let hayErrores = false
 
+    let pacienteValido = pacientes.findIndex(p => p.id == pacienteIdInput.value.trim())
+    if (pacienteValido == -1) {
+        pacienteIdInput.value = "paciente no existente"
+        hayErrores = true
+    }
+
+    let doctorValido = doctores.findIndex(d => d.id == doctorIdInput.value.trim())
+    if (doctorValido == -1) {
+        doctorIdInput.value = "doctor no existente"
+        hayErrores = true
+    }
+
     if (!validarFecha(fechaHoraInput.value)) {
+        fechaHoraInput.value = ""
+        hayErrores = true
+    }
+
+    if (motivoInput.value.trim() == "") {
+        motivoInput.value = "Rellene el motivo de la cita"
         hayErrores = true
     }
 
@@ -121,7 +139,7 @@ function validarFormulario(){
 }
 
 function crearNuevaCita(pacienteId, doctorId, fechaHora, motivo, estado) {
-    console.log(fechaHora + " es minimo un dia despues")
+    alert("yay")
 }
 
 function eliminarCita(id) {
