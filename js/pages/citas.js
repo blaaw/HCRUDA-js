@@ -139,7 +139,26 @@ function validarFormulario(){
 }
 
 function crearNuevaCita(pacienteId, doctorId, fechaHora, motivo, estado) {
-    alert("yay")
+    const nuevoId = "C0" + ((citas.length + 1) < 10 ? "0" + (citas.length + 1) : citas.length + 1)
+
+    let fecha = ""
+    let hora = ""
+    const partes = fechaHora.split("T")
+    fecha = partes[0]
+    hora = partes[1]
+    
+    const nuevaCita = {
+        id: nuevoId,
+        pacienteId: pacienteId,
+        medicoId: doctorId,
+        fecha: fecha,
+        hora: hora,
+        motivo: motivo,
+        estado: estado
+    }
+
+    citas.push(nuevaCita)
+    pintarTablaCitas(citas)
 }
 
 function eliminarCita(id) {
