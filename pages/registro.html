@@ -91,8 +91,8 @@
           <label for="rol">Rol</label>
           <select id="rol" name="rol" required class="input">
             <option value="">Selecciona un rol</option>
-            <value="medico">Médico</option>
-            <value="enfermero">Enfermero</option>
+            <option value="medico">Médico</option>
+            <option value="enfermero">Enfermero</option>
           </select>
           <p class="field__error" id="error-rol" aria-live="polite"></p>
         </div>
@@ -131,6 +131,12 @@
           Registrar
         </button>
       </form>
+
+      <div class="registro-exito" id="registro-exito" role="status" aria-live="polite" hidden>
+        <span class="registro-exito__label">Tu código de usuario es</span>
+        <strong class="registro-exito__codigo" id="codigo-usuario"></strong>
+        <span class="registro-exito__aviso">Redirigiendo al inicio de sesión en 3 segundos…</span>
+      </div>
 
       <footer class="registro-footer">
         Ya tienes cuenta? <a href="../index.html">Inicia sesión aquí</a>

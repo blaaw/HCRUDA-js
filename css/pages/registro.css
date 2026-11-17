@@ -78,6 +78,49 @@
   font-weight: 600;
 }
 
+/* Aviso con el código del usuario recién registrado */
+.registro-exito {
+  position: fixed;
+  top: var(--sp-5);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: calc(100% - var(--sp-6));
+  max-width: 360px;
+  padding: var(--sp-5) var(--sp-6);
+  background: var(--grad-raised);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-raised-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  text-align: center;
+}
+
+.registro-exito[hidden] {
+  display: none;
+}
+
+.registro-exito__label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+}
+
+.registro-exito__codigo {
+  font: 600 28px/1 var(--font-mono);
+  color: var(--cyan-700);
+  letter-spacing: var(--tracking-wordmark);
+}
+
+.registro-exito__aviso {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
 @media (max-width: 480px) {
   .registro-container {
     padding: var(--sp-5) var(--sp-3);
