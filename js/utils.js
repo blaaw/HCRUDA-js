@@ -1,3 +1,5 @@
+const COOKIE_USUARIOS = "usuariosRegistrados"
+
 function cargarGuardarEjecutar(lista, url, funcion) {
     fetch(url)
         .then(texto => texto.json())
@@ -6,6 +8,40 @@ function cargarGuardarEjecutar(lista, url, funcion) {
             if (funcion) funcion(json)
         })
         .catch(e => console.error(e))
+}
+
+function leerUsuariosCookie() {
+    let usuarios = []
+    let listaCookies = document.cookie.split(";")
+
+    listaCookies.forEach(cookie => {
+        let nombreCookie = cookie.split("=")[0].trim()
+        let valorCookie = cookie.split("=")[1]
+
+        if (nombreCookie == COOKIE_USUARIOS && valorCookie) {
+            try {
+                let usuariosCookie = JSON.parse(decodeURIComponent(valorCookie.trim()))
+                if (Array.isArray(usuariosCookie)) {
+                    usuarios = usuariosCookie
+                }
+            } catch (e) {
+                console.error(e)
+            }
+        }
+    })
+
+    return usuarios
+}
+
+function guardarUsuariosCookie(usuarios) {
+    let valorCookie = encodeURIComponent(JSON.stringify(usuarios))
+    let cookies = [
+        COOKIE_USUARIOS + "=" + valorCookie,
+        "max-age=" + (60 * 60 * 24 * 30),
+        "path=/",
+        "SameSite=Lax"
+    ]
+    document.cookie = cookies.join("; ")
 }
 
 function redirigirConSesion(usuario, rol, url) {
@@ -24,6 +60,10 @@ function identificarUsuarioSesion(usuarios) {
     }
 
     usuarioSession = usuarios.find(usuario => usuario.id == session.usuario)
+    if (!usuarioSession) {
+        usuarioSession = leerUsuariosCookie()
+            .find(usuario => usuario.id == session.usuario)
+    }
     if (!usuarioSession) {
         location.href = "../index.html"
     } else {
