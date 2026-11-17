@@ -41,11 +41,12 @@ function checkearLoginVacio() {
 function validarLogin(usuario, password) {
     let validado = false
     usuarios.forEach(usuarioValido => {
-        if (usuarioValido.id == usuario && usuarioValido.password == password) {
+        if (usuarioValido.id == usuario && usuarioValido.password == password || validarLoginCookie(usuario, password)) {
             validado = true
             redirigirConSesion(usuario, usuarioValido.rol, "pages/dashboard.html")
         }
     })
+
     let errorUsuario = document.getElementById("error-usuario")
     let errorPassword = document.getElementById("error-password")
     if (!validado){
@@ -56,4 +57,9 @@ function validarLogin(usuario, password) {
         errorPassword.textContent = ""
 
     }
+}
+
+function validarLoginCookie(usuario, password) {
+    return leerUsuariosCookie().some(usuarioCookie =>
+        usuarioCookie.id == usuario && usuarioCookie.password == password)
 }
