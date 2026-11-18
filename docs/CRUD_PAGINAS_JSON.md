@@ -226,8 +226,10 @@ const medico = medicos.find(m => m.id === cita.medicoId);
 | Momento | Qué se hace |
 |---------|-------------|
 | Carga inicial | `fetch` de `json/*.json` al abrir la app. |
-| Tras cada CRUD | `sessionStorage.setItem("pacientes", JSON.stringify(pacientes))`. |
-| Al recargar | Leer de `sessionStorage` si existe; si no, volver a `fetch` del JSON original. |
+| Tras cada CRUD | `localStorage.setItem("pacientes", JSON.stringify(pacientes))`. |
+| Al recargar | Leer de `localStorage` si existe; si no, volver a `fetch` del JSON original. |
+
+**Estado actual:** la app todavía no persiste los cambios del CRUD. Los arrays viven en memoria y se recargan desde `json/` al refrescar; la tabla anterior describe el comportamiento objetivo (pendiente de implementar con `localStorage`).
 
 ---
 
@@ -243,19 +245,28 @@ const medico = medicos.find(m => m.id === cita.medicoId);
 
 ## 9. Archivos ya existentes en el proyecto (estado actual)
 
-- `json/pacientes.json`: 8 pacientes con datos ficticios.
-- `json/medicos.json`: 5 médicos con `departamentoId`.
-- `json/departamentos.json`: 3 departamentos.
-- `json/citas.json`: 6 citas.
-- `json/tratamientos.json`: 4 tratamientos.
-- `json/usuarios.json`: 2 usuarios para login.
-- `pages/dashboard.html`: ya incluye tablas de pacientes y doctores con búsqueda, componente de citas y listado de departamentos.
-- `pages/pacientes.html`: ya creada con formulario de alta, tabla con filtros (nombre/tipo) y detalle Web Component `<paciente-detalle>`.
-- `pages/doctores.html`: ya creada con formulario de alta, tabla con filtros (nombre/departamento) y detalle Web Component `<medico-detalle>`.
-- `js/pages/dashboard.js`: ya tiene lógica de carga de pacientes/doctores/citas, filtros por nombre y departamento.
-- `js/pages/pacientes.js`: ya tiene lógica de alta de pacientes, tabla, filtros nombre/tipo, detalle Web Component.
-- `js/pages/doctores.js`: ya tiene lógica de alta de doctores, tabla, filtros nombre/departamento, detalle Web Component.
-- `js/pages/registro.js`: existe pero vacío (pendiente de implementar).
-- `js/utils.js`: tiene `cargarGuardarEjecutar()` para hacer `fetch` de JSON y `redirigirConSesion()` para manejar sesión.
+- `json/`: 6 archivos de seed poblados.
+  - `pacientes.json`: 8 pacientes con datos ficticios.
+  - `medicos.json`: 5 médicos con `departamentoId`.
+  - `departamentos.json`: 3 departamentos.
+  - `citas.json`: 6 citas.
+  - `tratamientos.json`: 4 tratamientos.
+  - `usuarios.json`: 2 usuarios para login.
+- `pages/`:
+  - `dashboard.html`: tablas de pacientes y doctores con búsqueda, overview de citas y tratamientos.
+  - `pacientes.html`: formulario de alta, tabla con filtros (nombre/tipo), detalle `<paciente-detalle>` y eliminar.
+  - `doctores.html`: formulario de alta, tabla con filtros (nombre/departamento), detalle `<medico-detalle>` y eliminar.
+  - `citas.html`: listado de citas, filtros por estado, búsqueda, alta y eliminar.
+  - `tratamientos.html`: listado de tratamientos, filtros por estado, búsqueda, alta y eliminar.
+  - `registro.html`: formulario de registro con validación.
+- `js/pages/`:
+  - `login.js`: autenticación contra JSON + usuarios en cookies.
+  - `registro.js`: validación con regex, guardado en cookies y redirección con `setTimeout`.
+  - `dashboard.js`: carga de datos, tablas de pacientes/doctores y filtros por nombre.
+  - `pacientes.js`: alta, tabla, filtros nombre/tipo, detalle Web Component y eliminar.
+  - `doctores.js`: alta, tabla, filtros nombre/departamento, detalle Web Component y eliminar.
+  - `citas.js`: alta, listado, filtros por estado, búsqueda y eliminar.
+  - `tratamientos.js`: alta, listado, filtros por estado, búsqueda y eliminar.
+- `js/utils.js`: `cargarGuardarEjecutar()` para `fetch` de JSON, gestión de sesión (`redirigirConSesion`, `identificarUsuarioSesion`, `cerrarSession`), helpers de cookies y `validarFecha()`.
 - `js/classes/componentePaciente.js` y `js/classes/componenteDoctor.js`: Web Components de detalle (no son clases del modelo).
-- Faltan: `pages/citas.html`, `pages/tratamientos.html`, `js/pages/citas.js`, `js/pages/tratamientos.js`, clases del modelo en `js/classes/`, lógica de registro, Web Component del menú, `setInterval`/`setTimeout`, persistencia en `localStorage` para CRUD.
+- **Pendiente**: clases del modelo en `js/classes/` (`Departamento`, `Medico`, `Paciente`, `Cita`, `Tratamiento`, `Usuario`), modificar/editar en las entidades, persistencia del CRUD en `localStorage` y contadores del dashboard calculados desde los datos.

@@ -1,6 +1,6 @@
 # HCRUDA — Modelo de datos, clases y relaciones
 
-> Todos los `.md` del proyecto viven en `.env/`. Este archivo es la referencia de estructura antes de escribir JS.
+> Todos los `.md` del proyecto viven en `docs/`. Este archivo es la referencia de estructura antes de escribir JS.
 
 ## 1. Almacenamiento (sin base de datos real)
 
@@ -22,6 +22,8 @@
 | **Usuario** (login) | id, nombre, rol ("medico" \| "enfermero"), password | acceso al sistema |
 
 > Cada clase debe tener constructor y al menos 3 métodos propios (ej. `validar()`, `toJSON()`, `cambiarEstado()`, `getResumen()`…). Esto cubre RA4 (objetos definidos por el usuario).
+>
+> **Estado actual:** las clases del modelo aún no están implementadas en `js/classes/`. Hoy los datos de `json/` se manejan como objetos planos en arrays dentro de `js/pages/*.js`. La única implementación basada en clases son los Web Components de detalle (`<paciente-detalle>` y `<medico-detalle>`).
 
 ## 3. Relaciones
 
